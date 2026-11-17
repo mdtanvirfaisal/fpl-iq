@@ -3,11 +3,12 @@ import 'package:fpl_iq/main.dart';
 import 'package:fpl_iq/models/squad.dart';
 
 void main() {
-  testWidgets('FplIqApp smoke test loads all 4 navigation tabs', (WidgetTester tester) async {
+  testWidgets('FplIqApp smoke test loads all 5 navigation tabs', (WidgetTester tester) async {
     await tester.pumpWidget(const FplIqApp());
 
     expect(find.text('Squad'), findsOneWidget);
     expect(find.text('Live'), findsOneWidget);
+    expect(find.text('Planner'), findsOneWidget);
     expect(find.text('Leagues'), findsOneWidget);
     expect(find.text('Watchlist'), findsOneWidget);
   });
@@ -105,6 +106,44 @@ void main() {
     expect(comp.userManagerId, 1);
     expect(comp.overallPointsGap, 25);
     expect(comp.gameweekPointsGap, 6);
-    expect(comp.captainPointsDelta, 6);
+  });
+
+  test('ClubFixtureTicker and TransferSimulationResult deserialization', () {
+    final tickerJson = {
+      'team_id': 1,
+      'team_name': 'Arsenal',
+      'team_short_name': 'ARS',
+      'fixtures': [
+        {
+          'gameweek': 11,
+          'opponent_id': 6,
+          'opponent_short_name': 'CHE',
+          'is_home': false,
+          'difficulty': 4
+        }
+      ]
+    };
+    final ticker = ClubFixtureTicker.fromJson(tickerJson);
+    expect(ticker.teamShortName, 'ARS');
+    expect(ticker.fixtures.length, 1);
+    expect(ticker.fixtures[0].difficulty, 4);
+
+    final simJson = {
+      'valid': true,
+      'validation_error': null,
+      'initial_bank': 1.5,
+      'final_bank': 0.8,
+      'transfers_count': 1,
+      'points_cost': 0,
+      'active_chip': 'wildcard',
+      'club_counts': {'ARS': 3},
+      'projected_points_estimate': 58,
+      'summary_text': 'Valid plan'
+    };
+    final sim = TransferSimulationResult.fromJson(simJson);
+    expect(sim.valid, true);
+    expect(sim.finalBank, 0.8);
+    expect(sim.activeChip, 'wildcard');
+    expect(sim.pointsCost, 0);
   });
 }

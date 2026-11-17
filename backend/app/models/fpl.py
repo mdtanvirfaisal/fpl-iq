@@ -200,3 +200,18 @@ class HeadToHeadComparison(BaseModel):
     rival_differentials: List[EnrichedSquadPlayer]
     shared_players: List[EnrichedSquadPlayer]
     summary_verdict: str
+
+
+class ClubFixtureTickerItem(BaseModel):
+    gameweek: int
+    opponent_id: int
+    opponent_short_name: str
+    is_home: bool
+    difficulty: int
+
+
+class ClubFixtureTicker(BaseModel):
+    team_id: int
+    team_name: str
+    team_short_name: str
+    fixtures: List[ClubFixtureTickerItem]

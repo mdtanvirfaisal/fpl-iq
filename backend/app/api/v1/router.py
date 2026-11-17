@@ -5,7 +5,11 @@ from app.services.fpl.watchlist_store import watchlist_store
 from app.models.fpl import (
     SquadResponse, ManagerProfile, RankImpactRequest, RankImpactResult,
     LiveMatchCenterResponse, PlayerSummary, WatchlistPlayerItem, TeamSummary,
-    ClassicLeagueSummary, LeagueStandingsResponse, HeadToHeadComparison
+    ClassicLeagueSummary, LeagueStandingsResponse, HeadToHeadComparison,
+    ClubFixtureTicker
+)
+from app.engine.planner import (
+    TransferSimulationRequest, TransferSimulationResult, simulate_transfer_plan
 )
 from app.engine.rank_impact import calculate_rank_impact
 from app.core.config import settings
@@ -219,3 +223,84 @@ async def compare_rival(
         return await fpl_client.compare_squads_head_to_head(manager_id, rival_id, gameweek)
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Failed to compare manager with rival: {str(e)}")
+
+
+@api_router.get("/fixtures/ticker", response_model=List[ClubFixtureTicker])
+async def get_fixture_ticker(
+    start_gw: Optional[int] = Query(None, description="Starting gameweek for ticker"),
+    count: int = Query(5, ge=1, le=10, description="Number of future gameweeks to display")
+):
+    """
+    Returns fixture difficulty ticker for all 20 Premier League clubs.
+    """
+    try:
+        return await fpl_client.get_fixture_ticker(start_gw, count)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Failed to fetch fixture ticker: {str(e)}")
+
+
+@api_router.post("/planner/simulate", response_model=TransferSimulationResult)
+async def simulate_transfers(request: TransferSimulationRequest):
+    """
+    Simulates a multi-transfer scenario or chip activation (Wildcard, Free Hit, Triple Captain, Bench Boost).
+    Validates budget, team limits (max 3 per club), and calculates point hits.
+    """
+    try:
+        squad = await fpl_client.get_enriched_squad(request.manager_id, request.gameweek)
+        bootstrap = await fpl_client.get_bootstrap_static()
+
+        teams_map = {
+            t["id"]: TeamSummary(
+                id=t["id"],
+                name=t["name"],
+                short_name=t["short_name"],
+                strength=t.get("strength") or 3
+            )
+            for t in bootstrap.get("teams", [])
+        }
+
+        elements_dict = {p["id"]: p for p in bootstrap.get("elements", [])}
+        incoming_summaries = []
+
+        from app.services.fpl.client import POSITION_MAP
+
+        for pid in request.transfers_in:
+            raw = elements_dict.get(pid)
+            if not raw:
+                raise HTTPException(status_code=404, detail=f"Transfer-in player ID {pid} not found in Premier League")
+            incoming_summaries.append(PlayerSummary(
+                id=raw["id"],
+                web_name=raw["web_name"],
+                first_name=raw["first_name"],
+                second_name=raw["second_name"],
+                team_id=raw["team"],
+                element_type=raw["element_type"],
+                position_name=POSITION_MAP.get(raw["element_type"], "UNK"),
+                now_cost=raw["now_cost"] / 10.0,
+                cost_raw=raw["now_cost"],
+                status=raw.get("status", "a"),
+                chance_of_playing_next_round=raw.get("chance_of_playing_next_round"),
+                news=raw.get("news") or None,
+                news_added=raw.get("news_added") or None,
+                total_points=raw.get("total_points", 0),
+                selected_by_percent=float(raw.get("selected_by_percent", 0.0)),
+                form=float(raw.get("form", 0.0)),
+                event_points=raw.get("event_points", 0)
+            ))
+
+        bank = squad.manager.last_deadline_bank or 0.0
+
+        all_players = squad.starting_xi + squad.bench
+        return simulate_transfer_plan(
+            current_players=all_players,
+            incoming_players=incoming_summaries,
+            teams_map=teams_map,
+            initial_bank=bank,
+            transfers_out_ids=request.transfers_out,
+            free_transfers=request.free_transfers,
+            active_chip=request.active_chip
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Transfer simulation failed: {str(e)}")

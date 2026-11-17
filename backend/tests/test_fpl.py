@@ -228,3 +228,133 @@ async def test_head_to_head_rival_comparison():
         assert len(data["shared_players"]) == 11
         assert len(data["user_differentials"]) == 0
         assert "Captaincy pick neutralized" in data["summary_verdict"]
+
+
+from app.engine.planner import simulate_transfer_plan
+from app.models.fpl import TeamSummary, PlayerSummary, EnrichedSquadPlayer, SquadPick
+
+
+def test_transfer_planner_budget_deficit():
+    # Setup mock squad with bank 1.0
+    from app.models.fpl import SquadPick
+
+    dummy_team = TeamSummary(id=1, name="Arsenal", short_name="ARS", strength=4)
+    p_out = PlayerSummary(
+        id=10, web_name="OutPlayer", first_name="A", second_name="B",
+        team_id=1, element_type=3, position_name="MID", now_cost=5.0, cost_raw=50,
+        status="a", total_points=50, selected_by_percent=5.0, form=4.0, event_points=2
+    )
+    squad_player = EnrichedSquadPlayer(
+        player=p_out, team=dummy_team,
+        pick=SquadPick(element_id=10, position=1, multiplier=1, is_captain=False, is_vice_captain=False),
+        live_points=2, is_starter=True
+    )
+
+    p_in_expensive = PlayerSummary(
+        id=99, web_name="ExpensiveIn", first_name="C", second_name="D",
+        team_id=2, element_type=3, position_name="MID", now_cost=12.0, cost_raw=120,
+        status="a", total_points=100, selected_by_percent=20.0, form=7.0, event_points=5
+    )
+
+    # Initial bank is £1.0m. Out gives £5.0m. In costs £12.0m. Deficit is £6.0m.
+    result = simulate_transfer_plan(
+        current_players=[squad_player],
+        incoming_players=[p_in_expensive],
+        teams_map={1: dummy_team, 2: TeamSummary(id=2, name="Chelsea", short_name="CHE", strength=3)},
+        initial_bank=1.0,
+        transfers_out_ids=[10]
+    )
+
+    assert result.valid is False
+    assert "Insufficient funds" in result.validation_error
+
+
+def test_transfer_planner_hits_and_wildcard():
+    from app.models.fpl import SquadPick
+    dummy_team = TeamSummary(id=1, name="Arsenal", short_name="ARS", strength=4)
+
+    players_out = [
+        PlayerSummary(id=i, web_name=f"Out{i}", first_name="A", second_name="B",
+                      team_id=1, element_type=3, position_name="MID", now_cost=6.0, cost_raw=60,
+                      status="a", total_points=50, selected_by_percent=5.0, form=4.0, event_points=2)
+        for i in [1, 2, 3]
+    ]
+    squad = [
+        EnrichedSquadPlayer(
+            player=p, team=dummy_team,
+            pick=SquadPick(element_id=p.id, position=idx+1, multiplier=1, is_captain=False, is_vice_captain=False),
+            live_points=2, is_starter=True
+        )
+        for idx, p in enumerate(players_out)
+    ]
+    players_in = [
+        PlayerSummary(id=i+100, web_name=f"In{i}", first_name="X", second_name="Y",
+                      team_id=i+2, element_type=3, position_name="MID", now_cost=6.0, cost_raw=60,
+                      status="a", total_points=50, selected_by_percent=5.0, form=4.0, event_points=2)
+        for i in [1, 2, 3]
+    ]
+
+    # Standard scenario: 3 transfers with 1 free transfer -> 2 extra transfers = 8 pts hit
+    res_hits = simulate_transfer_plan(
+        current_players=squad,
+        incoming_players=players_in,
+        teams_map={1: dummy_team, 3: dummy_team, 4: dummy_team, 5: dummy_team},
+        initial_bank=1.0,
+        transfers_out_ids=[1, 2, 3],
+        free_transfers=1
+    )
+    assert res_hits.valid is True
+    assert res_hits.points_cost == 8
+
+    # Wildcard chip scenario: hits waived
+    res_wc = simulate_transfer_plan(
+        current_players=squad,
+        incoming_players=players_in,
+        teams_map={1: dummy_team, 3: dummy_team, 4: dummy_team, 5: dummy_team},
+        initial_bank=1.0,
+        transfers_out_ids=[1, 2, 3],
+        free_transfers=1,
+        active_chip="wildcard"
+    )
+    assert res_wc.valid is True
+    assert res_wc.points_cost == 0
+
+
+@pytest.mark.asyncio
+async def test_fixture_ticker_endpoint():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        resp = await ac.get("/api/v1/fixtures/ticker?count=5")
+        assert resp.status_code == 200
+        data = resp.json()
+        assert len(data) == 20  # All 20 clubs
+        arsenal = next((c for c in data if c["team_short_name"] == "ARS"), None)
+        assert arsenal is not None
+        assert len(arsenal["fixtures"]) <= 5
+        if arsenal["fixtures"]:
+            assert 1 <= arsenal["fixtures"][0]["difficulty"] <= 5
+
+
+@pytest.mark.asyncio
+async def test_planner_simulate_endpoint():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        # Load manager 1 squad to pick a player to swap
+        squad_resp = await ac.get("/api/v1/manager/1/squad")
+        squad_data = squad_resp.json()
+        player_to_sell = squad_data["starting_xi"][0]["player"]["id"]
+
+        # Search for a replacement
+        search_resp = await ac.get("/api/v1/players/search?q=Gabriel")
+        gabriel = search_resp.json()[0]["id"]
+
+        payload = {
+            "manager_id": 1,
+            "transfers_out": [player_to_sell],
+            "transfers_in": [gabriel],
+            "free_transfers": 1,
+            "active_chip": None
+        }
+        sim_resp = await ac.post("/api/v1/planner/simulate", json=payload)
+        assert sim_resp.status_code == 200
+        sim_result = sim_resp.json()
+        assert "valid" in sim_result
+        assert sim_result["transfers_count"] == 1

@@ -8,7 +8,7 @@ from app.models.fpl import (
     SquadPick, EnrichedSquadPlayer, SquadResponse,
     MatchEvent, BonusSummary, FixtureMatch, LiveMatchCenterResponse,
     ClassicLeagueSummary, LeagueStandingEntry, LeagueStandingsResponse,
-    HeadToHeadComparison
+    HeadToHeadComparison, ClubFixtureTickerItem, ClubFixtureTicker
 )
 from app.engine.bonus import calculate_provisional_bonus
 
@@ -550,6 +550,67 @@ class FPLClient:
             shared_players=shared_players,
             summary_verdict=verdict
         )
+
+    async def get_fixture_ticker(
+        self,
+        start_gw: Optional[int] = None,
+        count: int = 5
+    ) -> List[ClubFixtureTicker]:
+        bootstrap = await self.get_bootstrap_static()
+        if start_gw is None:
+            current_gw = await self.get_current_gameweek()
+            start_gw = current_gw + 1 if current_gw < 38 else 38
+
+        all_fixtures = await self._fetch_with_retry("/fixtures/", settings.CACHE_BOOTSTRAP_TTL)
+
+        teams_map = {
+            t["id"]: TeamSummary(
+                id=t["id"],
+                name=t["name"],
+                short_name=t["short_name"],
+                strength=t.get("strength") or 3,
+            )
+            for t in bootstrap.get("teams", [])
+        }
+
+        ticker_results: List[ClubFixtureTicker] = []
+        end_gw = min(38, start_gw + count - 1)
+
+        for team_id, team_obj in teams_map.items():
+            team_fixtures: List[ClubFixtureTickerItem] = []
+            for f in all_fixtures:
+                gw = f.get("event")
+                if gw and start_gw <= gw <= end_gw:
+                    if f["team_h"] == team_id:
+                        opp_id = f["team_a"]
+                        opp_team = teams_map.get(opp_id, TeamSummary(id=opp_id, name="Opponent", short_name="OPP", strength=3))
+                        team_fixtures.append(ClubFixtureTickerItem(
+                            gameweek=gw,
+                            opponent_id=opp_id,
+                            opponent_short_name=opp_team.short_name,
+                            is_home=True,
+                            difficulty=f.get("team_h_difficulty") or 3
+                        ))
+                    elif f["team_a"] == team_id:
+                        opp_id = f["team_h"]
+                        opp_team = teams_map.get(opp_id, TeamSummary(id=opp_id, name="Opponent", short_name="OPP", strength=3))
+                        team_fixtures.append(ClubFixtureTickerItem(
+                            gameweek=gw,
+                            opponent_id=opp_id,
+                            opponent_short_name=opp_team.short_name,
+                            is_home=False,
+                            difficulty=f.get("team_a_difficulty") or 3
+                        ))
+
+            team_fixtures.sort(key=lambda x: x.gameweek)
+            ticker_results.append(ClubFixtureTicker(
+                team_id=team_id,
+                team_name=team_obj.name,
+                team_short_name=team_obj.short_name,
+                fixtures=team_fixtures
+            ))
+
+        return sorted(ticker_results, key=lambda x: x.team_name)
 
 
 fpl_client = FPLClient()
