@@ -13,19 +13,20 @@ FPL IQ/
 ├── PRD.md                         # Core Product Requirements Document
 ├── backend/                       # Python FastAPI Analytical Backend
 │   ├── app/
-│   │   ├── api/v1/router.py       # REST endpoints (squad, live, rank, leagues, planner, FDR, notifications, trends, injuries)
+│   │   ├── api/v1/router.py       # REST endpoints (squad, live, rank, leagues, planner, FDR, notifications, trends, advisor)
 │   │   ├── core/config.py         # App configuration & cache TTL settings
 │   │   ├── engine/
 │   │   │   ├── rank_impact.py     # Signature Rank-Impact & relative swing engine
 │   │   │   ├── bonus.py           # Official tie-breaking Provisional Bonus engine
-│   │   │   └── planner.py         # Transfer constraint validator & Chip Simulator
+│   │   │   ├── planner.py         # Transfer constraint validator & Chip Simulator
+│   │   │   └── advisor.py         # Grounded AI FPL Advisor & Squad Health engine
 │   │   ├── models/fpl.py          # Pydantic v2 schemas
 │   │   ├── services/fpl/
 │   │   │   ├── client.py          # Resilient FPL client with backoff & smart caching
 │   │   │   ├── watchlist_store.py # Persistent watchlist JSON store
 │   │   │   └── notification_store.py # Notifications & alert preferences engine
 │   │   └── main.py                # FastAPI entrypoint with CORS
-│   └── tests/test_fpl.py          # 19 Unit & live FPL integration tests
+│   └── tests/test_fpl.py          # 21 Unit & live FPL integration tests
 │
 └── mobile/                        # Flutter Mobile App (iOS / Android)
     ├── lib/
@@ -35,16 +36,17 @@ FPL IQ/
     │   └── features/
     │       ├── home/              # Main navigation shell & squad pitch view
     │       ├── live/              # Live Match Centre with provisional bonus & timeline
+    │       ├── advisor/           # AI FPL Advisor (Health score, captaincy, transfer upgrades)
     │       ├── planner/           # Transfers, FDR Ticker, & Market Trends
     │       ├── leagues/           # Mini-League standings & Head-to-Head Rival Radar
     │       ├── notifications/     # Alert Feed with priorities & preferences modal
     │       └── watchlist/         # Player search & status tracking
-    └── test/widget_test.dart      # 6 Widget & deserialization tests
+    └── test/widget_test.dart      # 7 Widget & deserialization tests
 ```
 
 ---
 
-## Delivered MVP Capabilities (Phases 1–5)
+## Delivered Capabilities (Phases 1–6)
 
 1. **Phase 1: Foundation & FPL Data Ingestion Spike**
    - Connected with official `fantasy.premierleague.com/api` endpoints (`bootstrap-static/`, `entry/{id}/`, `entry/{id}/event/{gw}/picks/`, `event/{gw}/live/`, `fixtures/`).
@@ -83,12 +85,18 @@ FPL IQ/
 
 5. **Phase 5: Notification Alert Engine, Injury Feed & Market Trends**
    - **Priority-Ranked Notifications**:
-     - Priority tiers: `CRITICAL` (deadline imminent, injury crisis), `HIGH` (differential hauls, rival captain scores), `NORMAL`, `LOW`.
+     - Priority tiers: `CRITICAL`, `HIGH`, `NORMAL`, `LOW`.
      - Granular user preferences: toggle match events, rank impact, injuries, market trends, deadline countdowns, and overnight **Quiet Hours** (23:00 – 07:00).
    - **Injury & Availability Feed**:
-     - Aggregates official FPL availability flags (`d` doubtful, `i` injured, `s` suspended), chance-of-playing percentages, reasons, and timestamps.
+     - Aggregates official availability flags (`d` doubtful, `i` injured, `s` suspended), chance-of-playing percentages, reasons, and timestamps.
    - **Market Transfer Trends**:
      - Real-time ranking of the most transferred in (GW buy targets) and most transferred out (GW exits) players in the Premier League.
+
+6. **Phase 6: Grounded AI FPL Advisor & Health Audit (PRD Section 7.10)**
+   - **Squad Health Score**: 0–100 evaluation based on starter form, bench depth, and injury liability.
+   - **Armband Verdict**: Tactical algorithm ranking captain and vice-captain options using form, opponent FDR, home advantage, and ownership risk.
+   - **Budget-Aware Transfer Upgrades**: Evaluates low-performing or injured starters and proposes 1-to-1 replacements within the manager's exact bank balance.
+   - **Grounded Verification**: Displays the exact statistical inputs used (avoiding hallucinated pricing or availability).
 
 ---
 
@@ -98,7 +106,7 @@ FPL IQ/
 ```powershell
 .\backend\.venv\Scripts\pytest -c backend\pytest.ini backend\tests -v
 ```
-**19/19 tests passing** (unit logic + live integration with Premier League endpoints).
+**21/21 tests passing** (unit logic + live integration with Premier League endpoints).
 
 ### Mobile Tests & Analysis
 ```powershell
@@ -106,7 +114,7 @@ cd mobile
 flutter analyze
 flutter test
 ```
-**0 analysis issues**, **6/6 widget & model tests passing**.
+**0 analysis issues**, **7/7 widget & model tests passing**.
 
 ---
 
@@ -116,7 +124,7 @@ flutter test
    ```powershell
    .\backend\.venv\Scripts\uvicorn app.main:app --reload --port 8000
    ```
-   Interactive API docs are available at: `http://localhost:8000/docs`.
+   Interactive API docs: `http://localhost:8000/docs`.
 
 2. **Run the Flutter Mobile App:**
    ```powershell
