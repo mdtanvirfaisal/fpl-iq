@@ -2,13 +2,16 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
+from app.core.database import engine, Base
+import app.models.db  # Ensure models are registered with Base
 from app.api.v1.router import api_router
 from app.services.fpl.client import fpl_client
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup actions
+    # Initialize database tables
+    Base.metadata.create_all(bind=engine)
     yield
     # Shutdown actions
     await fpl_client.close()

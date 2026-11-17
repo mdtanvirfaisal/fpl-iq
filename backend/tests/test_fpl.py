@@ -476,3 +476,58 @@ async def test_advisor_analyze_endpoint():
         assert "primary_captain_recommendation" in data
         assert "squad_health_score" in data
         assert len(data["recommendations"]) > 0
+
+
+from app.engine.ocr_import import parse_screenshot_ocr_text
+from app.workers.poller import poller
+
+
+def test_ocr_squad_import_parser():
+    ocr_sample = """
+    Raya (GKP)
+    Gabriel Saliba Van de Ven Pedro Porro
+    Palmer (C) Saka (V) Groß Mitoma
+    Haaland Barry
+    Bench: Pickford Justin Longstaff Wood
+    """
+    elements = [
+        {"id": 1, "web_name": "Raya", "first_name": "David", "second_name": "Raya", "team": 1, "element_type": 1, "now_cost": 55},
+        {"id": 2, "web_name": "Gabriel", "first_name": "G", "second_name": "Gabriel", "team": 1, "element_type": 2, "now_cost": 60},
+        {"id": 3, "web_name": "Saliba", "first_name": "W", "second_name": "Saliba", "team": 1, "element_type": 2, "now_cost": 60},
+        {"id": 4, "web_name": "Palmer", "first_name": "C", "second_name": "Palmer", "team": 2, "element_type": 3, "now_cost": 105},
+        {"id": 5, "web_name": "Haaland", "first_name": "E", "second_name": "Haaland", "team": 3, "element_type": 4, "now_cost": 150},
+        {"id": 6, "web_name": "Pickford", "first_name": "J", "second_name": "Pickford", "team": 4, "element_type": 1, "now_cost": 48},
+    ]
+    teams_map = {
+        1: TeamSummary(id=1, name="Arsenal", short_name="ARS", strength=4),
+        2: TeamSummary(id=2, name="Chelsea", short_name="CHE", strength=4),
+        3: TeamSummary(id=3, name="Man City", short_name="MCI", strength=5),
+        4: TeamSummary(id=4, name="Everton", short_name="EVE", strength=3),
+    }
+
+    res = parse_screenshot_ocr_text(ocr_sample, elements, teams_map)
+    assert res.total_detected >= 5
+    palmer = next((p for p in res.starting_xi if p.matched_name == "Palmer"), None)
+    assert palmer is not None
+    assert palmer.is_captain is True
+
+
+@pytest.mark.asyncio
+async def test_ocr_import_endpoint():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        payload = {
+            "ocr_text": "Gabriel Saliba Palmer (C) Haaland Raya"
+        }
+        resp = await ac.post("/api/v1/squad/import/ocr", json=payload)
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["total_detected"] >= 4
+        assert "starting_xi" in data
+
+
+@pytest.mark.asyncio
+async def test_poller_cycle():
+    # Verify poller runs a single cycle against live center without throwing
+    count = await poller.poll_once()
+    assert isinstance(count, int)
+    assert count >= 0

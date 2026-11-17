@@ -214,4 +214,34 @@ void main() {
     expect(adv.recommendations.length, 1);
     expect(adv.recommendations[0].category, 'captaincy');
   });
+
+  test('OcrSquadImportResponse deserialization', () {
+    final ocrJson = {
+      'success': true,
+      'total_detected': 15,
+      'starting_xi': [
+        {
+          'player_id': 1,
+          'matched_name': 'Raya',
+          'detected_token': 'Raya',
+          'position_name': 'GKP',
+          'element_type': 1,
+          'team_short_name': 'ARS',
+          'now_cost': 5.5,
+          'confidence': 1.0,
+          'is_captain': false,
+          'is_vice_captain': false,
+          'is_starter': true
+        }
+      ],
+      'bench': [],
+      'missing_count': 0,
+      'warnings': [],
+      'raw_tokens_processed': 10
+    };
+    final ocr = OcrSquadImportResponse.fromJson(ocrJson);
+    expect(ocr.success, true);
+    expect(ocr.totalDetected, 15);
+    expect(ocr.startingXi[0].matchedName, 'Raya');
+  });
 }

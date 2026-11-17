@@ -1,5 +1,2885 @@
 [
   {
+    "id": "5ed54249",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Suzuki",
+    "body": "Yellow card recorded for Suzuki.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3bece27c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Heaven",
+    "body": "Yellow card recorded for Heaven.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "66937dcd",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: N.Jackson (AVL)",
+    "body": "N.Jackson recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9e10d232",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: McGinn (AVL)",
+    "body": "McGinn recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "079dd7ee",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Alysson (AVL)",
+    "body": "Alysson recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "838fb10d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Cunha (MUN)",
+    "body": "Cunha recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d740045f",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: B.Fernandes (MUN)",
+    "body": "B.Fernandes recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e382602d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Mazraoui (MUN)",
+    "body": "Mazraoui recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "56f16629",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Dorgu (MUN)",
+    "body": "Dorgu recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "290f6325",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Goretzka (AVL)",
+    "body": "Goretzka scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ca310955",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! N.Jackson (AVL)",
+    "body": "N.Jackson scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1d912ee8",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Alysson (AVL)",
+    "body": "Alysson scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "657661de",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! McGinn (AVL)",
+    "body": "McGinn scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "90c28d02",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Zirkzee (MUN)",
+    "body": "Zirkzee scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "35fbed0b",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! B.Fernandes (MUN)",
+    "body": "B.Fernandes scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2d07e654",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Dorgu (MUN)",
+    "body": "Dorgu scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "dd51b57e",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Tielemans (MUN)",
+    "body": "Tielemans scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "481fa6c3",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Caicedo",
+    "body": "Yellow card recorded for Caicedo.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "7c9fb39b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Neto",
+    "body": "Yellow card recorded for Neto.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4b9c5068",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Colwill",
+    "body": "Yellow card recorded for Colwill.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2ddef6db",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Fofana",
+    "body": "Yellow card recorded for Fofana.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2d3af334",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ahoka",
+    "body": "Yellow card recorded for Ahoka.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "01e1f57e",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Brobbey",
+    "body": "Yellow card recorded for Brobbey.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e90c3bc7",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: N.Angulo",
+    "body": "Yellow card recorded for N.Angulo.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c527073b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Meunier",
+    "body": "Yellow card recorded for Meunier.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b4a13877",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: O'Nien",
+    "body": "Yellow card recorded for O'Nien.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "76623797",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Brobbey (SUN)",
+    "body": "Brobbey recorded an assist in SUN vs CHE.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "67f777ab",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! E.Le F\u00e9e (SUN)",
+    "body": "E.Le F\u00e9e scored in SUN vs CHE (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cc3539f5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Silva",
+    "body": "Yellow card recorded for Silva.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "83194e6d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Tavernier",
+    "body": "Yellow card recorded for Tavernier.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cf6985c3",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Smith",
+    "body": "Yellow card recorded for Smith.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "528edc95",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Flemming",
+    "body": "Yellow card recorded for Flemming.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c1d6efc9",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Enciso",
+    "body": "Yellow card recorded for Enciso.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8139019a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Davis",
+    "body": "Own goal recorded for Davis.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1a1533d1",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Christie (BOU)",
+    "body": "Christie recorded an assist in IPS vs BOU.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8f37ab58",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Ouattara (IPS)",
+    "body": "Ouattara recorded an assist in IPS vs BOU.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fb6c231e",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Evanilson (BOU)",
+    "body": "Evanilson scored in IPS vs BOU (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "16c7e69f",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Clarke (IPS)",
+    "body": "Clarke scored in IPS vs BOU (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "f287481b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Barcola",
+    "body": "Yellow card recorded for Barcola.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ec3e1094",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Araujo",
+    "body": "Yellow card recorded for Araujo.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "6058fe07",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Munoz",
+    "body": "Yellow card recorded for Munoz.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9cbe5261",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Mac Allister",
+    "body": "Yellow card recorded for Mac Allister.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "79a26c02",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Lerma",
+    "body": "Yellow card recorded for Lerma.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e3100910",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Yeremy",
+    "body": "Yellow card recorded for Yeremy.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "efd7e319",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Barcola (LIV)",
+    "body": "Barcola recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b418f5e1",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Szoboszlai (LIV)",
+    "body": "Szoboszlai recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "46c66805",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Wirtz (LIV)",
+    "body": "Wirtz recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "57926b60",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Osorio (CRY)",
+    "body": "Osorio recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c2c43528",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Isak (LIV)",
+    "body": "Isak scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "833439d3",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Mac Allister (LIV)",
+    "body": "Mac Allister scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ae7f1ef2",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Wirtz (LIV)",
+    "body": "Wirtz scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:20:53Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ac0a39e8",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Nketiah (CRY)",
+    "body": "Nketiah scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ab69031e",
+    "priority": "critical",
+    "category": "player_events",
+    "title": "RED CARD! Thiago (BRE)",
+    "body": "Thiago was sent off in BHA vs BRE.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "66070a92",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Schade",
+    "body": "Yellow card recorded for Schade.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fe38331e",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ajer",
+    "body": "Yellow card recorded for Ajer.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "5dc3e985",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Andr\u00e9s",
+    "body": "Yellow card recorded for Andr\u00e9s.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "488aeed0",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Wieffer",
+    "body": "Yellow card recorded for Wieffer.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4bfc0a6c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Dunk",
+    "body": "Yellow card recorded for Dunk.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ff168935",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Boscagli",
+    "body": "Yellow card recorded for Boscagli.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "bf068034",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Vuskovic (BHA)",
+    "body": "Vuskovic recorded an assist in BHA vs BRE.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0d6d2e5f",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gomez (BHA)",
+    "body": "Gomez scored in BHA vs BRE (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "449345db",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gro\u00df (BHA)",
+    "body": "Gro\u00df scored in BHA vs BRE (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3a514981",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Igor Jesus",
+    "body": "Yellow card recorded for Igor Jesus.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "125096c9",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: McAtee",
+    "body": "Yellow card recorded for McAtee.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "5e61c67d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ndoye",
+    "body": "Yellow card recorded for Ndoye.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "01852cd2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Netz",
+    "body": "Yellow card recorded for Netz.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b7a71328",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Schlager (NFO)",
+    "body": "Schlager recorded an assist in NFO vs MCI.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "5dc84061",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Gibbs-White (NFO)",
+    "body": "Gibbs-White recorded an assist in NFO vs MCI.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "f967d680",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Cherki (MCI)",
+    "body": "Cherki scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "480deab9",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Jair Cunha (NFO)",
+    "body": "Jair Cunha scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b3a2e673",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Delap (NFO)",
+    "body": "Delap scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "72953121",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Dedi\u0107",
+    "body": "Yellow card recorded for Dedi\u0107.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "62b55fa6",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Sch\u00e4r",
+    "body": "Yellow card recorded for Sch\u00e4r.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2789b7b3",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Palacios (FUL)",
+    "body": "Palacios recorded an assist in FUL vs NEW.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cdedc97b",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! J.Murphy (NEW)",
+    "body": "J.Murphy scored in FUL vs NEW (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0a8c07c9",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Muniz (FUL)",
+    "body": "Muniz scored in FUL vs NEW (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0f9c726f",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Norton-Cuffy",
+    "body": "Yellow card recorded for Norton-Cuffy.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "082a92ed",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Gourna-Douath",
+    "body": "Yellow card recorded for Gourna-Douath.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "5109481f",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Mendy",
+    "body": "Yellow card recorded for Mendy.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9270c552",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Stroud",
+    "body": "Yellow card recorded for Stroud.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3b46282f",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Coyle",
+    "body": "Yellow card recorded for Coyle.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3975d004",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Madueke (ARS)",
+    "body": "Madueke recorded an assist in ARS vs HUL.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1af2246e",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! \u00d8degaard (ARS)",
+    "body": "\u00d8degaard scored in ARS vs HUL (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8fa6ed60",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Van de Ven",
+    "body": "Yellow card recorded for Van de Ven.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "995de0ea",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Pedro Porro",
+    "body": "Yellow card recorded for Pedro Porro.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e5511b02",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Tonali",
+    "body": "Yellow card recorded for Tonali.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cd2d6fa0",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Longstaff",
+    "body": "Yellow card recorded for Longstaff.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "bfdde9a3",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Okafor",
+    "body": "Yellow card recorded for Okafor.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cbac1348",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Okafor (LEE)",
+    "body": "Okafor scored in LEE vs TOT (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "07ac2162",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Yirenkyi",
+    "body": "Yellow card recorded for Yirenkyi.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "86037a81",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Branthwaite",
+    "body": "Yellow card recorded for Branthwaite.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "546f348c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Barry (EVE)",
+    "body": "Barry recorded an assist in EVE vs COV.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d0594c80",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Mykolenko (EVE)",
+    "body": "Mykolenko recorded an assist in EVE vs COV.",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "36382ae1",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gboho (COV)",
+    "body": "Gboho scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "156391e0",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Dewsbury-Hall (EVE)",
+    "body": "Dewsbury-Hall scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "740cf15c",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Barry (EVE)",
+    "body": "Barry scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:20:52Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "dfb657c9",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Suzuki",
+    "body": "Yellow card recorded for Suzuki.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": true,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c7724512",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Heaven",
+    "body": "Yellow card recorded for Heaven.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c5d6cba2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: N.Jackson (AVL)",
+    "body": "N.Jackson recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "418d2c68",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: McGinn (AVL)",
+    "body": "McGinn recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8719011e",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Alysson (AVL)",
+    "body": "Alysson recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cf4c1105",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Cunha (MUN)",
+    "body": "Cunha recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "db047339",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: B.Fernandes (MUN)",
+    "body": "B.Fernandes recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "a6285525",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Mazraoui (MUN)",
+    "body": "Mazraoui recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8557100c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Dorgu (MUN)",
+    "body": "Dorgu recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fdc0640f",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Goretzka (AVL)",
+    "body": "Goretzka scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9bc4bbb6",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! N.Jackson (AVL)",
+    "body": "N.Jackson scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "6f4f7bef",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Alysson (AVL)",
+    "body": "Alysson scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "dd339977",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! McGinn (AVL)",
+    "body": "McGinn scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c3e6d406",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Zirkzee (MUN)",
+    "body": "Zirkzee scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e8a701e4",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! B.Fernandes (MUN)",
+    "body": "B.Fernandes scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "daa00169",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Dorgu (MUN)",
+    "body": "Dorgu scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "528f8238",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Tielemans (MUN)",
+    "body": "Tielemans scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d32fbf2b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Caicedo",
+    "body": "Yellow card recorded for Caicedo.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d58662ad",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Neto",
+    "body": "Yellow card recorded for Neto.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "563401cd",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Colwill",
+    "body": "Yellow card recorded for Colwill.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "194ee29b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Fofana",
+    "body": "Yellow card recorded for Fofana.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "013c7f53",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ahoka",
+    "body": "Yellow card recorded for Ahoka.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "7588ab40",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Brobbey",
+    "body": "Yellow card recorded for Brobbey.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4af065fc",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: N.Angulo",
+    "body": "Yellow card recorded for N.Angulo.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3674a5de",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Meunier",
+    "body": "Yellow card recorded for Meunier.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2e76bad4",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: O'Nien",
+    "body": "Yellow card recorded for O'Nien.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "375b79c0",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Brobbey (SUN)",
+    "body": "Brobbey recorded an assist in SUN vs CHE.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c93c1ac0",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! E.Le F\u00e9e (SUN)",
+    "body": "E.Le F\u00e9e scored in SUN vs CHE (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9b36471a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Silva",
+    "body": "Yellow card recorded for Silva.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fb3c90a5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Tavernier",
+    "body": "Yellow card recorded for Tavernier.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "454cfbac",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Smith",
+    "body": "Yellow card recorded for Smith.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "76451b04",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Flemming",
+    "body": "Yellow card recorded for Flemming.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "da4081e0",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Enciso",
+    "body": "Yellow card recorded for Enciso.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2be43588",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Davis",
+    "body": "Own goal recorded for Davis.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8d7414a7",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Christie (BOU)",
+    "body": "Christie recorded an assist in IPS vs BOU.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "bb2a532b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Ouattara (IPS)",
+    "body": "Ouattara recorded an assist in IPS vs BOU.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "595a8833",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Evanilson (BOU)",
+    "body": "Evanilson scored in IPS vs BOU (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cc9e75d7",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Clarke (IPS)",
+    "body": "Clarke scored in IPS vs BOU (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "383b904b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Barcola",
+    "body": "Yellow card recorded for Barcola.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c372e551",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Araujo",
+    "body": "Yellow card recorded for Araujo.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8af3f71a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Munoz",
+    "body": "Yellow card recorded for Munoz.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8525217d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Mac Allister",
+    "body": "Yellow card recorded for Mac Allister.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "48827f98",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Lerma",
+    "body": "Yellow card recorded for Lerma.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "182986de",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Yeremy",
+    "body": "Yellow card recorded for Yeremy.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "222e213c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Barcola (LIV)",
+    "body": "Barcola recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "bcaed4fc",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Szoboszlai (LIV)",
+    "body": "Szoboszlai recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "16d5bbfd",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Wirtz (LIV)",
+    "body": "Wirtz recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ca8cfcfd",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Osorio (CRY)",
+    "body": "Osorio recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d6efbd08",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Isak (LIV)",
+    "body": "Isak scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ab8dcdba",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Mac Allister (LIV)",
+    "body": "Mac Allister scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c0489e87",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Wirtz (LIV)",
+    "body": "Wirtz scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "23643553",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Nketiah (CRY)",
+    "body": "Nketiah scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4d5a0321",
+    "priority": "critical",
+    "category": "player_events",
+    "title": "RED CARD! Thiago (BRE)",
+    "body": "Thiago was sent off in BHA vs BRE.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "13a1db6a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Schade",
+    "body": "Yellow card recorded for Schade.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "04c042ac",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ajer",
+    "body": "Yellow card recorded for Ajer.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e16ab625",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Andr\u00e9s",
+    "body": "Yellow card recorded for Andr\u00e9s.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b72e98bd",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Wieffer",
+    "body": "Yellow card recorded for Wieffer.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d833d614",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Dunk",
+    "body": "Yellow card recorded for Dunk.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "df21d29b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Boscagli",
+    "body": "Yellow card recorded for Boscagli.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "84ce394f",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Vuskovic (BHA)",
+    "body": "Vuskovic recorded an assist in BHA vs BRE.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "316ddab8",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gomez (BHA)",
+    "body": "Gomez scored in BHA vs BRE (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d2e19e94",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gro\u00df (BHA)",
+    "body": "Gro\u00df scored in BHA vs BRE (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "5c993b37",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Igor Jesus",
+    "body": "Yellow card recorded for Igor Jesus.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ae84edd4",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: McAtee",
+    "body": "Yellow card recorded for McAtee.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0a629780",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ndoye",
+    "body": "Yellow card recorded for Ndoye.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "10c59500",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Netz",
+    "body": "Yellow card recorded for Netz.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4cf31bfa",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Schlager (NFO)",
+    "body": "Schlager recorded an assist in NFO vs MCI.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b0104ec5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Gibbs-White (NFO)",
+    "body": "Gibbs-White recorded an assist in NFO vs MCI.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "aedc2bdc",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Cherki (MCI)",
+    "body": "Cherki scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e82d201f",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Jair Cunha (NFO)",
+    "body": "Jair Cunha scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "39b2d3cd",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Delap (NFO)",
+    "body": "Delap scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0808bff2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Dedi\u0107",
+    "body": "Yellow card recorded for Dedi\u0107.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b8b81984",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Sch\u00e4r",
+    "body": "Yellow card recorded for Sch\u00e4r.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fae6b0b4",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Palacios (FUL)",
+    "body": "Palacios recorded an assist in FUL vs NEW.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "426e5e65",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! J.Murphy (NEW)",
+    "body": "J.Murphy scored in FUL vs NEW (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8ec0d438",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Muniz (FUL)",
+    "body": "Muniz scored in FUL vs NEW (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d17b9cd9",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Norton-Cuffy",
+    "body": "Yellow card recorded for Norton-Cuffy.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "72af29b6",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Gourna-Douath",
+    "body": "Yellow card recorded for Gourna-Douath.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2086364e",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Mendy",
+    "body": "Yellow card recorded for Mendy.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "dcdf1fbf",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Stroud",
+    "body": "Yellow card recorded for Stroud.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "99d0c3b5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Coyle",
+    "body": "Yellow card recorded for Coyle.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8f1d4273",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Madueke (ARS)",
+    "body": "Madueke recorded an assist in ARS vs HUL.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9ff04477",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! \u00d8degaard (ARS)",
+    "body": "\u00d8degaard scored in ARS vs HUL (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "aa98cd67",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Van de Ven",
+    "body": "Yellow card recorded for Van de Ven.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "32e400e5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Pedro Porro",
+    "body": "Yellow card recorded for Pedro Porro.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cc3219a7",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Tonali",
+    "body": "Yellow card recorded for Tonali.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "675738d8",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Longstaff",
+    "body": "Yellow card recorded for Longstaff.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b78d518a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Okafor",
+    "body": "Yellow card recorded for Okafor.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "332e8dd7",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Okafor (LEE)",
+    "body": "Okafor scored in LEE vs TOT (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "eec1a3bd",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Yirenkyi",
+    "body": "Yellow card recorded for Yirenkyi.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2dedc904",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Branthwaite",
+    "body": "Yellow card recorded for Branthwaite.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "48058bc0",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Barry (EVE)",
+    "body": "Barry recorded an assist in EVE vs COV.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "aea92d4c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Mykolenko (EVE)",
+    "body": "Mykolenko recorded an assist in EVE vs COV.",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "42fe4245",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gboho (COV)",
+    "body": "Gboho scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "188a32ff",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Dewsbury-Hall (EVE)",
+    "body": "Dewsbury-Hall scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "63723bdf",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Barry (EVE)",
+    "body": "Barry scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:19:08Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0f57d61b",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Suzuki",
+    "body": "Yellow card recorded for Suzuki.",
+    "timestamp": "2026-11-17T21:18:45Z",
+    "read": true,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2641ef07",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Heaven",
+    "body": "Yellow card recorded for Heaven.",
+    "timestamp": "2026-11-17T21:18:45Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e16d3632",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: N.Jackson (AVL)",
+    "body": "N.Jackson recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c129f529",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: McGinn (AVL)",
+    "body": "McGinn recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4fa1286e",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Alysson (AVL)",
+    "body": "Alysson recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "f9905cd5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Cunha (MUN)",
+    "body": "Cunha recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "26d43be1",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: B.Fernandes (MUN)",
+    "body": "B.Fernandes recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3202781a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Mazraoui (MUN)",
+    "body": "Mazraoui recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0c6f0d98",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Dorgu (MUN)",
+    "body": "Dorgu recorded an assist in MUN vs AVL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "7440d1a0",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Goretzka (AVL)",
+    "body": "Goretzka scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4d041f21",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! N.Jackson (AVL)",
+    "body": "N.Jackson scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "771fb4cd",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Alysson (AVL)",
+    "body": "Alysson scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "6d5a4e6f",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! McGinn (AVL)",
+    "body": "McGinn scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "588b38f8",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Zirkzee (MUN)",
+    "body": "Zirkzee scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "86708386",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! B.Fernandes (MUN)",
+    "body": "B.Fernandes scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "f753e0d2",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Dorgu (MUN)",
+    "body": "Dorgu scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2772853d",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Tielemans (MUN)",
+    "body": "Tielemans scored in MUN vs AVL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9f37c949",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Caicedo",
+    "body": "Yellow card recorded for Caicedo.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fe50e6cf",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Neto",
+    "body": "Yellow card recorded for Neto.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4ec69e62",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Colwill",
+    "body": "Yellow card recorded for Colwill.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "53ab35df",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Fofana",
+    "body": "Yellow card recorded for Fofana.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "a661099d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ahoka",
+    "body": "Yellow card recorded for Ahoka.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "767adf46",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Brobbey",
+    "body": "Yellow card recorded for Brobbey.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "504a5ba9",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: N.Angulo",
+    "body": "Yellow card recorded for N.Angulo.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "150f7a8d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Meunier",
+    "body": "Yellow card recorded for Meunier.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ed172a44",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: O'Nien",
+    "body": "Yellow card recorded for O'Nien.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b3a4c7fa",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Brobbey (SUN)",
+    "body": "Brobbey recorded an assist in SUN vs CHE.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ccfaf335",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! E.Le F\u00e9e (SUN)",
+    "body": "E.Le F\u00e9e scored in SUN vs CHE (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fbd00e0a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Silva",
+    "body": "Yellow card recorded for Silva.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "dde87f62",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Tavernier",
+    "body": "Yellow card recorded for Tavernier.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "70909e3d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Smith",
+    "body": "Yellow card recorded for Smith.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "535eec60",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Flemming",
+    "body": "Yellow card recorded for Flemming.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e46634ee",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Enciso",
+    "body": "Yellow card recorded for Enciso.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "0e48f0bb",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Davis",
+    "body": "Own goal recorded for Davis.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "7bfa4750",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Christie (BOU)",
+    "body": "Christie recorded an assist in IPS vs BOU.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "bbf4709d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Ouattara (IPS)",
+    "body": "Ouattara recorded an assist in IPS vs BOU.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ed4da11d",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Evanilson (BOU)",
+    "body": "Evanilson scored in IPS vs BOU (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1ea805db",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Clarke (IPS)",
+    "body": "Clarke scored in IPS vs BOU (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b7482d5c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Barcola",
+    "body": "Yellow card recorded for Barcola.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ccfd3e96",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Araujo",
+    "body": "Yellow card recorded for Araujo.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "5af98464",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Munoz",
+    "body": "Yellow card recorded for Munoz.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "dd049315",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Mac Allister",
+    "body": "Yellow card recorded for Mac Allister.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b87cbece",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Lerma",
+    "body": "Yellow card recorded for Lerma.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "25a2cab0",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Yeremy",
+    "body": "Yellow card recorded for Yeremy.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e3d0d7a5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Barcola (LIV)",
+    "body": "Barcola recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2cc403a9",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Szoboszlai (LIV)",
+    "body": "Szoboszlai recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3ec5da12",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Wirtz (LIV)",
+    "body": "Wirtz recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "59e5ddc4",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Osorio (CRY)",
+    "body": "Osorio recorded an assist in CRY vs LIV.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ff8f1431",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Isak (LIV)",
+    "body": "Isak scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "64086276",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Mac Allister (LIV)",
+    "body": "Mac Allister scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "02a89522",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Wirtz (LIV)",
+    "body": "Wirtz scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1a120337",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Nketiah (CRY)",
+    "body": "Nketiah scored in CRY vs LIV (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e293698e",
+    "priority": "critical",
+    "category": "player_events",
+    "title": "RED CARD! Thiago (BRE)",
+    "body": "Thiago was sent off in BHA vs BRE.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "5c153aa9",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Schade",
+    "body": "Yellow card recorded for Schade.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "7d1e589a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ajer",
+    "body": "Yellow card recorded for Ajer.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "6ddb968e",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Andr\u00e9s",
+    "body": "Yellow card recorded for Andr\u00e9s.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "b3c6b339",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Wieffer",
+    "body": "Yellow card recorded for Wieffer.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "7ba96b59",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Dunk",
+    "body": "Yellow card recorded for Dunk.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4f3c3b58",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Boscagli",
+    "body": "Yellow card recorded for Boscagli.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "edaf7709",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Vuskovic (BHA)",
+    "body": "Vuskovic recorded an assist in BHA vs BRE.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9ca3ef25",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gomez (BHA)",
+    "body": "Gomez scored in BHA vs BRE (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "56d40cba",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gro\u00df (BHA)",
+    "body": "Gro\u00df scored in BHA vs BRE (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "cf9d7d51",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Igor Jesus",
+    "body": "Yellow card recorded for Igor Jesus.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1bb9ad2d",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: McAtee",
+    "body": "Yellow card recorded for McAtee.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "d52c8d45",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Ndoye",
+    "body": "Yellow card recorded for Ndoye.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "23755674",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Netz",
+    "body": "Yellow card recorded for Netz.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "777f1f1c",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Schlager (NFO)",
+    "body": "Schlager recorded an assist in NFO vs MCI.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "45c837de",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Gibbs-White (NFO)",
+    "body": "Gibbs-White recorded an assist in NFO vs MCI.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "aa0a021d",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Cherki (MCI)",
+    "body": "Cherki scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "f59301bb",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Jair Cunha (NFO)",
+    "body": "Jair Cunha scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "9cf19301",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Delap (NFO)",
+    "body": "Delap scored in NFO vs MCI (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "2c554d7e",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Dedi\u0107",
+    "body": "Yellow card recorded for Dedi\u0107.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "a21fd1f3",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Sch\u00e4r",
+    "body": "Yellow card recorded for Sch\u00e4r.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fce64c24",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Palacios (FUL)",
+    "body": "Palacios recorded an assist in FUL vs NEW.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "4ce0340f",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! J.Murphy (NEW)",
+    "body": "J.Murphy scored in FUL vs NEW (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "db41cc95",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Muniz (FUL)",
+    "body": "Muniz scored in FUL vs NEW (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1e1b0bc5",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Norton-Cuffy",
+    "body": "Yellow card recorded for Norton-Cuffy.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "fa2745c2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Gourna-Douath",
+    "body": "Yellow card recorded for Gourna-Douath.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "8e30c1bb",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Mendy",
+    "body": "Yellow card recorded for Mendy.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "69b6c1f2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Stroud",
+    "body": "Yellow card recorded for Stroud.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "bac37ac8",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Coyle",
+    "body": "Yellow card recorded for Coyle.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "20620a9a",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Madueke (ARS)",
+    "body": "Madueke recorded an assist in ARS vs HUL.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "bf2b48b7",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! \u00d8degaard (ARS)",
+    "body": "\u00d8degaard scored in ARS vs HUL (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "a10c7cb3",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Van de Ven",
+    "body": "Yellow card recorded for Van de Ven.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "eaaba2d6",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Pedro Porro",
+    "body": "Yellow card recorded for Pedro Porro.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "917d89e2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Tonali",
+    "body": "Yellow card recorded for Tonali.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "445c9cdd",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Longstaff",
+    "body": "Yellow card recorded for Longstaff.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "3107c218",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Okafor",
+    "body": "Yellow card recorded for Okafor.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "27790892",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Okafor (LEE)",
+    "body": "Okafor scored in LEE vs TOT (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "21ed89c2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Yirenkyi",
+    "body": "Yellow card recorded for Yirenkyi.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e23d8474",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Match Event: Branthwaite",
+    "body": "Yellow card recorded for Branthwaite.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "1fe80f90",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Barry (EVE)",
+    "body": "Barry recorded an assist in EVE vs COV.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "7cba6be2",
+    "priority": "normal",
+    "category": "player_events",
+    "title": "Assist: Mykolenko (EVE)",
+    "body": "Mykolenko recorded an assist in EVE vs COV.",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "ff080dd8",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Gboho (COV)",
+    "body": "Gboho scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "c50794c7",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Dewsbury-Hall (EVE)",
+    "body": "Dewsbury-Hall scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
+    "id": "e2c792d9",
+    "priority": "high",
+    "category": "player_events",
+    "title": "GOAL! Barry (EVE)",
+    "body": "Barry scored in EVE vs COV (live Full Time).",
+    "timestamp": "2026-11-17T21:18:44Z",
+    "read": false,
+    "deep_link": "/live"
+  },
+  {
     "id": "9415f7b3",
     "priority": "critical",
     "category": "deadline",

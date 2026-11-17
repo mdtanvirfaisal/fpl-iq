@@ -15,6 +15,12 @@ from app.engine.planner import (
     TransferSimulationRequest, TransferSimulationResult, simulate_transfer_plan
 )
 from app.engine.advisor import generate_advisor_analysis
+from app.engine.ocr_import import parse_screenshot_ocr_text, OcrSquadImportResponse
+from pydantic import BaseModel
+
+
+class OcrImportRequest(BaseModel):
+    ocr_text: str
 from app.engine.rank_impact import calculate_rank_impact
 from app.core.config import settings
 import time
@@ -408,3 +414,31 @@ async def analyze_squad_with_advisor(request: AdvisorQueryRequest):
         )
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"AI Advisor analysis failed: {str(e)}")
+
+
+@api_router.post("/squad/import/ocr", response_model=OcrSquadImportResponse)
+async def import_squad_from_ocr(request: OcrImportRequest):
+    """
+    Screenshot Squad Import Assist (Section 7.1 ONB-02):
+    Parses OCR / screenshot text, fuzzy-matches player names against official Premier League elements,
+    and proposes Starting XI, Bench, and Captaincy with confidence ratings.
+    """
+    try:
+        bootstrap = await fpl_client.get_bootstrap_static()
+        teams_map = {
+            t["id"]: TeamSummary(
+                id=t["id"],
+                name=t["name"],
+                short_name=t["short_name"],
+                strength=t.get("strength") or 3
+            )
+            for t in bootstrap.get("teams", [])
+        }
+
+        return parse_screenshot_ocr_text(
+            ocr_text=request.ocr_text,
+            all_elements=bootstrap.get("elements", []),
+            teams_map=teams_map
+        )
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Screenshot OCR import failed: {str(e)}")

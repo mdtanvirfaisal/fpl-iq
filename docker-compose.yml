@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fpl_iq_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=FPL IQ Backend
+      - DEBUG=False
+      - DATABASE_URL=postgresql://fpl_user:fpl_secret@db:5432/fpl_iq_db
+      - FPL_BASE_URL=https://fantasy.premierleague.com/api
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  poller:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fpl_iq_poller
+    command: python -c "import asyncio; from app.workers.poller import poller; asyncio.run(poller.run_daemon())"
+    environment:
+      - DATABASE_URL=postgresql://fpl_user:fpl_secret@db:5432/fpl_iq_db
+      - FPL_BASE_URL=https://fantasy.premierleague.com/api
+    depends_on:
+      backend:
+        condition: service_started
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: fpl_iq_postgres
+    environment:
+      POSTGRES_USER: fpl_user
+      POSTGRES_PASSWORD: fpl_secret
+      POSTGRES_DB: fpl_iq_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fpl_user -d fpl_iq_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
