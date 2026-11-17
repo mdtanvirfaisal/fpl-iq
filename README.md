@@ -13,7 +13,7 @@ FPL IQ/
 ├── PRD.md                         # Core Product Requirements Document
 ├── backend/                       # Python FastAPI Analytical Backend
 │   ├── app/
-│   │   ├── api/v1/router.py       # REST endpoints (squad, live, rank, leagues, planner, FDR)
+│   │   ├── api/v1/router.py       # REST endpoints (squad, live, rank, leagues, planner, FDR, notifications, trends, injuries)
 │   │   ├── core/config.py         # App configuration & cache TTL settings
 │   │   ├── engine/
 │   │   │   ├── rank_impact.py     # Signature Rank-Impact & relative swing engine
@@ -22,9 +22,10 @@ FPL IQ/
 │   │   ├── models/fpl.py          # Pydantic v2 schemas
 │   │   ├── services/fpl/
 │   │   │   ├── client.py          # Resilient FPL client with backoff & smart caching
-│   │   │   └── watchlist_store.py # Persistent watchlist JSON store
+│   │   │   ├── watchlist_store.py # Persistent watchlist JSON store
+│   │   │   └── notification_store.py # Notifications & alert preferences engine
 │   │   └── main.py                # FastAPI entrypoint with CORS
-│   └── tests/test_fpl.py          # 16 Unit & live FPL integration tests
+│   └── tests/test_fpl.py          # 19 Unit & live FPL integration tests
 │
 └── mobile/                        # Flutter Mobile App (iOS / Android)
     ├── lib/
@@ -34,15 +35,16 @@ FPL IQ/
     │   └── features/
     │       ├── home/              # Main navigation shell & squad pitch view
     │       ├── live/              # Live Match Centre with provisional bonus & timeline
-    │       ├── planner/           # Transfer Scenario Simulator & FDR Fixture Ticker
+    │       ├── planner/           # Transfers, FDR Ticker, & Market Trends
     │       ├── leagues/           # Mini-League standings & Head-to-Head Rival Radar
+    │       ├── notifications/     # Alert Feed with priorities & preferences modal
     │       └── watchlist/         # Player search & status tracking
-    └── test/widget_test.dart      # Widget & deserialization tests
+    └── test/widget_test.dart      # 6 Widget & deserialization tests
 ```
 
 ---
 
-## Delivered MVP Capabilities
+## Delivered MVP Capabilities (Phases 1–5)
 
 1. **Phase 1: Foundation & FPL Data Ingestion Spike**
    - Connected with official `fantasy.premierleague.com/api` endpoints (`bootstrap-static/`, `entry/{id}/`, `entry/{id}/event/{gw}/picks/`, `event/{gw}/live/`, `fixtures/`).
@@ -79,6 +81,15 @@ FPL IQ/
      - 5-gameweek forward ticker for all 20 Premier League clubs
      - Color-coded difficulty badges (Green = Easy, Slate = Medium, Red/Orange = Hard) with Home/Away indicators (`(H)` / `(A)`).
 
+5. **Phase 5: Notification Alert Engine, Injury Feed & Market Trends**
+   - **Priority-Ranked Notifications**:
+     - Priority tiers: `CRITICAL` (deadline imminent, injury crisis), `HIGH` (differential hauls, rival captain scores), `NORMAL`, `LOW`.
+     - Granular user preferences: toggle match events, rank impact, injuries, market trends, deadline countdowns, and overnight **Quiet Hours** (23:00 – 07:00).
+   - **Injury & Availability Feed**:
+     - Aggregates official FPL availability flags (`d` doubtful, `i` injured, `s` suspended), chance-of-playing percentages, reasons, and timestamps.
+   - **Market Transfer Trends**:
+     - Real-time ranking of the most transferred in (GW buy targets) and most transferred out (GW exits) players in the Premier League.
+
 ---
 
 ## Verification & Testing
@@ -87,7 +98,7 @@ FPL IQ/
 ```powershell
 .\backend\.venv\Scripts\pytest -c backend\pytest.ini backend\tests -v
 ```
-**16/16 tests passing** (unit logic + live integration with Premier League endpoints).
+**19/19 tests passing** (unit logic + live integration with Premier League endpoints).
 
 ### Mobile Tests & Analysis
 ```powershell
@@ -95,7 +106,7 @@ cd mobile
 flutter analyze
 flutter test
 ```
-**0 analysis issues**, **5/5 widget & model tests passing**.
+**0 analysis issues**, **6/6 widget & model tests passing**.
 
 ---
 
