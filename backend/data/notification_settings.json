@@ -1,0 +1,10 @@
+{
+  "enable_player_events": true,
+  "enable_rank_impact": true,
+  "enable_injuries": true,
+  "enable_transfers": true,
+  "enable_deadline": true,
+  "quiet_hours_enabled": true,
+  "quiet_hours_start": "23:00",
+  "quiet_hours_end": "07:00"
+}

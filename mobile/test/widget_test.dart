@@ -146,4 +146,44 @@ void main() {
     expect(sim.activeChip, 'wildcard');
     expect(sim.pointsCost, 0);
   });
+
+  test('NotificationItem and MarketTrendsResponse deserialization', () {
+    final notifJson = {
+      'id': 'notif-1',
+      'priority': 'critical',
+      'category': 'deadline',
+      'title': 'Deadline Imminent',
+      'body': 'Lock your team.',
+      'timestamp': '2026-11-18T00:00:00Z',
+      'read': false,
+      'deep_link': '/planner'
+    };
+    final notif = NotificationItem.fromJson(notifJson);
+    expect(notif.id, 'notif-1');
+    expect(notif.priority, 'critical');
+    expect(notif.read, false);
+
+    final trendsJson = {
+      'most_transferred_in': [
+        {
+          'player_id': 166,
+          'player_name': 'N.Jackson',
+          'team_short_name': 'AVL',
+          'position_name': 'FWD',
+          'now_cost': 7.5,
+          'transfers_in_event': 350000,
+          'transfers_out_event': 20000,
+          'net_transfers_event': 330000,
+          'selected_by_percent': 18.5,
+          'form': 6.2
+        }
+      ],
+      'most_transferred_out': [],
+      'data_freshness_ts': '2026-11-18T00:00:00Z'
+    };
+    final trends = MarketTrendsResponse.fromJson(trendsJson);
+    expect(trends.mostTransferredIn.length, 1);
+    expect(trends.mostTransferredIn[0].playerName, 'N.Jackson');
+    expect(trends.mostTransferredIn[0].netTransfersEvent, 330000);
+  });
 }

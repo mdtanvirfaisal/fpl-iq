@@ -8,7 +8,8 @@ from app.models.fpl import (
     SquadPick, EnrichedSquadPlayer, SquadResponse,
     MatchEvent, BonusSummary, FixtureMatch, LiveMatchCenterResponse,
     ClassicLeagueSummary, LeagueStandingEntry, LeagueStandingsResponse,
-    HeadToHeadComparison, ClubFixtureTickerItem, ClubFixtureTicker
+    HeadToHeadComparison, ClubFixtureTickerItem, ClubFixtureTicker,
+    InjuryNewsItem, MarketTrendPlayer, MarketTrendsResponse
 )
 from app.engine.bonus import calculate_provisional_bonus
 
@@ -611,6 +612,85 @@ class FPLClient:
             ))
 
         return sorted(ticker_results, key=lambda x: x.team_name)
+
+    async def get_injury_news(self, squad_player_ids: Optional[List[int]] = None) -> List[InjuryNewsItem]:
+        """
+        Retrieves injury, doubt, and suspension availability news across the league,
+        optionally filtered to a specific manager squad.
+        """
+        bootstrap = await self.get_bootstrap_static()
+        teams_map = {t["id"]: t for t in bootstrap.get("teams", [])}
+        flagged = []
+
+        status_labels = {
+            "d": "Doubtful",
+            "i": "Injured",
+            "s": "Suspended",
+            "u": "Unavailable"
+        }
+
+        filter_set = set(squad_player_ids) if squad_player_ids else None
+
+        for p in bootstrap.get("elements", []):
+            if filter_set and p["id"] not in filter_set:
+                continue
+
+            status = p.get("status", "a")
+            if status != "a":
+                team = teams_map.get(p["team"], {})
+                chance = p.get("chance_of_playing_next_round")
+                base_label = status_labels.get(status, "Flagged")
+                status_label = f"{base_label} ({chance}%)" if chance is not None else base_label
+
+                flagged.append(InjuryNewsItem(
+                    player_id=p["id"],
+                    player_name=p["web_name"],
+                    team_name=team.get("name", "Unknown"),
+                    team_short_name=team.get("short_name", "UNK"),
+                    position_name=POSITION_MAP.get(p["element_type"], "UNK"),
+                    status=status,
+                    status_label=status_label,
+                    news=p.get("news") or "Flagged by official FPL",
+                    news_added=p.get("news_added"),
+                    chance_of_playing=chance
+                ))
+
+        # Sort by status urgency and name
+        return sorted(flagged, key=lambda x: (x.chance_of_playing is not None, x.chance_of_playing, x.player_name))
+
+    async def get_market_trends(self, limit: int = 10) -> MarketTrendsResponse:
+        """
+        Analyzes transfer market momentum: most transferred in & most transferred out for the gameweek.
+        """
+        bootstrap = await self.get_bootstrap_static()
+        teams_map = {t["id"]: t.get("short_name", "UNK") for t in bootstrap.get("teams", [])}
+        elements = bootstrap.get("elements", [])
+
+        # Filter and sort
+        in_sorted = sorted(elements, key=lambda x: x.get("transfers_in_event", 0), reverse=True)[:limit]
+        out_sorted = sorted(elements, key=lambda x: x.get("transfers_out_event", 0), reverse=True)[:limit]
+
+        def to_trend_item(p):
+            t_in = p.get("transfers_in_event", 0)
+            t_out = p.get("transfers_out_event", 0)
+            return MarketTrendPlayer(
+                player_id=p["id"],
+                player_name=p["web_name"],
+                team_short_name=teams_map.get(p["team"], "UNK"),
+                position_name=POSITION_MAP.get(p["element_type"], "UNK"),
+                now_cost=p["now_cost"] / 10.0,
+                transfers_in_event=t_in,
+                transfers_out_event=t_out,
+                net_transfers_event=t_in - t_out,
+                selected_by_percent=float(p.get("selected_by_percent", 0.0)),
+                form=float(p.get("form", 0.0))
+            )
+
+        return MarketTrendsResponse(
+            most_transferred_in=[to_trend_item(p) for p in in_sorted],
+            most_transferred_out=[to_trend_item(p) for p in out_sorted],
+            data_freshness_ts=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        )
 
 
 fpl_client = FPLClient()

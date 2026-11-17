@@ -1,0 +1,32 @@
+[
+  {
+    "id": "9415f7b3",
+    "priority": "critical",
+    "category": "deadline",
+    "title": "Gameweek Deadline Approaching",
+    "body": "The next Premier League deadline locks soon. Review your active XI and captaincy choice.",
+    "timestamp": "2026-11-17T21:05:49Z",
+    "read": true,
+    "deep_link": "/planner"
+  },
+  {
+    "id": "58cadd6e",
+    "priority": "high",
+    "category": "rank_impact",
+    "title": "Differential Haul Detected",
+    "body": "Your starter returned double digits, delivering an estimated +9.2 pts swing vs Top 100k cohort.",
+    "timestamp": "2026-11-17T21:05:49Z",
+    "read": false,
+    "deep_link": "/squad"
+  },
+  {
+    "id": "388f89da",
+    "priority": "normal",
+    "category": "injuries",
+    "title": "Availability Alert: Squad Doubt",
+    "body": "Bukayo Saka is flagged with a 75% chance of playing due to a knock. Tap to inspect details.",
+    "timestamp": "2026-11-17T21:05:49Z",
+    "read": true,
+    "deep_link": "/squad"
+  }
+]

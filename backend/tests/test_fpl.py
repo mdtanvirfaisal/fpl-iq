@@ -358,3 +358,53 @@ async def test_planner_simulate_endpoint():
         sim_result = sim_resp.json()
         assert "valid" in sim_result
         assert sim_result["transfers_count"] == 1
+
+
+@pytest.mark.asyncio
+async def test_injury_news_endpoint():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        resp = await ac.get("/api/v1/injuries")
+        assert resp.status_code == 200
+        injuries = resp.json()
+        assert len(injuries) > 0
+        first = injuries[0]
+        assert "player_name" in first
+        assert "status_label" in first
+        assert "news" in first
+
+
+@pytest.mark.asyncio
+async def test_market_trends_endpoint():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        resp = await ac.get("/api/v1/market/trends?limit=5")
+        assert resp.status_code == 200
+        data = resp.json()
+        assert len(data["most_transferred_in"]) <= 5
+        assert len(data["most_transferred_out"]) <= 5
+        assert data["most_transferred_in"][0]["transfers_in_event"] >= 0
+
+
+@pytest.mark.asyncio
+async def test_notifications_workflow():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        notifs_resp = await ac.get("/api/v1/notifications")
+        assert notifs_resp.status_code == 200
+        notifs = notifs_resp.json()
+        assert len(notifs) > 0
+        target_id = notifs[0]["id"]
+
+        # Mark read
+        read_resp = await ac.post(f"/api/v1/notifications/{target_id}/read")
+        assert read_resp.status_code == 200
+        assert read_resp.json()["status"] == "marked_read"
+
+        # Settings
+        settings_resp = await ac.get("/api/v1/notifications/settings")
+        assert settings_resp.status_code == 200
+        cur_settings = settings_resp.json()
+        assert "enable_player_events" in cur_settings
+
+        cur_settings["quiet_hours_enabled"] = True
+        update_resp = await ac.post("/api/v1/notifications/settings", json=cur_settings)
+        assert update_resp.status_code == 200
+        assert update_resp.json()["quiet_hours_enabled"] is True

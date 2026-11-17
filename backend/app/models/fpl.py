@@ -215,3 +215,57 @@ class ClubFixtureTicker(BaseModel):
     team_name: str
     team_short_name: str
     fixtures: List[ClubFixtureTickerItem]
+
+
+class InjuryNewsItem(BaseModel):
+    player_id: int
+    player_name: str
+    team_name: str
+    team_short_name: str
+    position_name: str
+    status: str
+    status_label: str
+    news: str
+    news_added: Optional[str] = None
+    chance_of_playing: Optional[int] = None
+
+
+class MarketTrendPlayer(BaseModel):
+    player_id: int
+    player_name: str
+    team_short_name: str
+    position_name: str
+    now_cost: float
+    transfers_in_event: int
+    transfers_out_event: int
+    net_transfers_event: int
+    selected_by_percent: float
+    form: float
+
+
+class MarketTrendsResponse(BaseModel):
+    most_transferred_in: List[MarketTrendPlayer]
+    most_transferred_out: List[MarketTrendPlayer]
+    data_freshness_ts: str
+
+
+class NotificationItem(BaseModel):
+    id: str
+    priority: str  # critical, high, normal, low
+    category: str  # player_events, rank_impact, injuries, transfers, deadline
+    title: str
+    body: str
+    timestamp: str
+    read: bool = False
+    deep_link: Optional[str] = None
+
+
+class NotificationSettings(BaseModel):
+    enable_player_events: bool = True
+    enable_rank_impact: bool = True
+    enable_injuries: bool = True
+    enable_transfers: bool = True
+    enable_deadline: bool = True
+    quiet_hours_enabled: bool = False
+    quiet_hours_start: str = "23:00"
+    quiet_hours_end: str = "07:00"

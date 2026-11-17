@@ -2,11 +2,13 @@ from typing import Optional, List, Dict, Any
 from fastapi import APIRouter, HTTPException, Query
 from app.services.fpl.client import fpl_client, FPLResourceNotFound
 from app.services.fpl.watchlist_store import watchlist_store
+from app.services.fpl.notification_store import notification_store
 from app.models.fpl import (
     SquadResponse, ManagerProfile, RankImpactRequest, RankImpactResult,
     LiveMatchCenterResponse, PlayerSummary, WatchlistPlayerItem, TeamSummary,
     ClassicLeagueSummary, LeagueStandingsResponse, HeadToHeadComparison,
-    ClubFixtureTicker
+    ClubFixtureTicker, InjuryNewsItem, MarketTrendsResponse,
+    NotificationItem, NotificationSettings
 )
 from app.engine.planner import (
     TransferSimulationRequest, TransferSimulationResult, simulate_transfer_plan
@@ -304,3 +306,54 @@ async def simulate_transfers(request: TransferSimulationRequest):
         raise
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Transfer simulation failed: {str(e)}")
+
+
+@api_router.get("/injuries", response_model=List[InjuryNewsItem])
+async def get_injuries(manager_id: Optional[int] = Query(None)):
+    """
+    Returns injury, doubtful, and suspension availability news.
+    If manager_id is specified, filters news to the manager's 15-player squad.
+    """
+    try:
+        squad_ids = None
+        if manager_id is not None:
+            squad = await fpl_client.get_enriched_squad(manager_id)
+            squad_ids = [p.player.id for p in squad.starting_xi + squad.bench]
+        return await fpl_client.get_injury_news(squad_ids)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Failed to fetch injury news: {str(e)}")
+
+
+@api_router.get("/market/trends", response_model=MarketTrendsResponse)
+async def get_market_trends(limit: int = Query(10, ge=1, le=25)):
+    """
+    Returns top transferred in and transferred out players in the market for the current gameweek.
+    """
+    try:
+        return await fpl_client.get_market_trends(limit)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Failed to fetch market trends: {str(e)}")
+
+
+@api_router.get("/notifications", response_model=List[NotificationItem])
+async def get_notifications():
+    """
+    Fetches the manager's personalized alert feed with priorities, categories, and deep links.
+    """
+    return notification_store.get_notifications()
+
+
+@api_router.post("/notifications/{notif_id}/read")
+async def mark_notification_read(notif_id: str):
+    success = notification_store.mark_as_read(notif_id)
+    return {"status": "marked_read" if success else "not_found", "id": notif_id}
+
+
+@api_router.get("/notifications/settings", response_model=NotificationSettings)
+async def get_notification_settings():
+    return notification_store.get_settings()
+
+
+@api_router.post("/notifications/settings", response_model=NotificationSettings)
+async def update_notification_settings(settings: NotificationSettings):
+    return notification_store.update_settings(settings)
