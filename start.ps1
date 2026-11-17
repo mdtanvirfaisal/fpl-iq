@@ -3,4 +3,4 @@ Write-Host "            Starting FPL IQ Backend Server              " -Foregroun
 Write-Host "========================================================" -ForegroundColor Green
 
 $env:PYTHONPATH = "backend"
-& ".\backend\.venv\Scripts\python.exe" -m uvicorn app.main:app --app-dir backend --reload --port 8000
+& ".\backend\.venv\Scripts\python.exe" -m uvicorn app.main:app --app-dir backend --reload --host 0.0.0.0 --port 8000
