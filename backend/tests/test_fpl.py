@@ -195,3 +195,36 @@ async def test_watchlist_workflow():
         del_resp = await ac.delete(f"/api/v1/watchlist/{haaland['id']}")
         assert del_resp.status_code == 200
         assert del_resp.json()["status"] == "removed"
+
+
+@pytest.mark.asyncio
+async def test_manager_leagues_and_standings():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        leagues_resp = await ac.get("/api/v1/manager/1/leagues")
+        assert leagues_resp.status_code == 200
+        leagues = leagues_resp.json()
+        assert len(leagues) > 0
+        first_league = leagues[0]
+        assert "name" in first_league
+
+        # Fetch standings
+        standings_resp = await ac.get(f"/api/v1/leagues/{first_league['id']}/standings")
+        assert standings_resp.status_code == 200
+        standings_data = standings_resp.json()
+        assert "standings" in standings_data
+
+
+@pytest.mark.asyncio
+async def test_head_to_head_rival_comparison():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        # Compare entry 1 with entry 1 (symmetric test)
+        resp = await ac.get("/api/v1/manager/1/rival/1/compare")
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["user_manager_id"] == 1
+        assert data["rival_manager_id"] == 1
+        assert data["gameweek_points_gap"] == 0
+        assert data["captain_points_delta"] == 0
+        assert len(data["shared_players"]) == 11
+        assert len(data["user_differentials"]) == 0
+        assert "Captaincy pick neutralized" in data["summary_verdict"]

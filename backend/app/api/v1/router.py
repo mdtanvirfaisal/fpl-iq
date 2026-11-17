@@ -4,7 +4,8 @@ from app.services.fpl.client import fpl_client, FPLResourceNotFound
 from app.services.fpl.watchlist_store import watchlist_store
 from app.models.fpl import (
     SquadResponse, ManagerProfile, RankImpactRequest, RankImpactResult,
-    LiveMatchCenterResponse, PlayerSummary, WatchlistPlayerItem, TeamSummary
+    LiveMatchCenterResponse, PlayerSummary, WatchlistPlayerItem, TeamSummary,
+    ClassicLeagueSummary, LeagueStandingsResponse, HeadToHeadComparison
 )
 from app.engine.rank_impact import calculate_rank_impact
 from app.core.config import settings
@@ -180,3 +181,41 @@ async def add_to_watchlist(player_id: int):
 async def remove_from_watchlist(player_id: int):
     removed = watchlist_store.remove(player_id)
     return {"status": "removed" if removed else "not_found", "player_id": player_id}
+
+
+@api_router.get("/manager/{manager_id}/leagues", response_model=List[ClassicLeagueSummary])
+async def get_manager_leagues(manager_id: int):
+    """
+    Retrieves all classic mini-leagues a manager participates in.
+    """
+    try:
+        return await fpl_client.get_manager_leagues(manager_id)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Failed to fetch manager leagues: {str(e)}")
+
+
+@api_router.get("/leagues/{league_id}/standings", response_model=LeagueStandingsResponse)
+async def get_league_standings(league_id: int):
+    """
+    Retrieves current rankings, manager names, and live event scores for a mini-league.
+    """
+    try:
+        return await fpl_client.get_league_standings(league_id)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Failed to fetch league standings: {str(e)}")
+
+
+@api_router.get("/manager/{manager_id}/rival/{rival_id}/compare", response_model=HeadToHeadComparison)
+async def compare_rival(
+    manager_id: int,
+    rival_id: int,
+    gameweek: Optional[int] = Query(None)
+):
+    """
+    Compares two managers head-to-head for a gameweek:
+    calculates points gap, captaincy swing, shared players, and differentials.
+    """
+    try:
+        return await fpl_client.compare_squads_head_to_head(manager_id, rival_id, gameweek)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Failed to compare manager with rival: {str(e)}")

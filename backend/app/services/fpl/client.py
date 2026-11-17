@@ -6,7 +6,9 @@ from app.core.config import settings
 from app.models.fpl import (
     PlayerSummary, TeamSummary, GameweekEvent, ManagerProfile,
     SquadPick, EnrichedSquadPlayer, SquadResponse,
-    MatchEvent, BonusSummary, FixtureMatch, LiveMatchCenterResponse
+    MatchEvent, BonusSummary, FixtureMatch, LiveMatchCenterResponse,
+    ClassicLeagueSummary, LeagueStandingEntry, LeagueStandingsResponse,
+    HeadToHeadComparison
 )
 from app.engine.bonus import calculate_provisional_bonus
 
@@ -436,6 +438,118 @@ class FPLClient:
                     break
 
         return results
+
+    async def get_manager_leagues(self, manager_id: int) -> List[ClassicLeagueSummary]:
+        mgr = await self.get_manager(manager_id)
+        raw_classic = mgr.get("leagues", {}).get("classic", [])
+        return [
+            ClassicLeagueSummary(
+                id=item["id"],
+                name=item["name"],
+                entry_rank=item.get("entry_rank"),
+                entry_last_rank=item.get("entry_last_rank"),
+                league_type=item.get("league_type", "x"),
+            )
+            for item in raw_classic
+        ]
+
+    async def get_league_standings(self, league_id: int) -> LeagueStandingsResponse:
+        raw = await self._fetch_with_retry(f"/leagues-classic/{league_id}/standings/", settings.CACHE_MANAGER_TTL)
+        league_meta = raw.get("league", {})
+        standings_raw = raw.get("standings", {}).get("results", [])
+
+        standings = [
+            LeagueStandingEntry(
+                entry_id=item["entry"],
+                entry_name=item["entry_name"],
+                player_name=item["player_name"],
+                rank=item["rank"],
+                last_rank=item.get("last_rank"),
+                event_total=item.get("event_total", 0),
+                total=item.get("total", 0),
+            )
+            for item in standings_raw
+        ]
+
+        return LeagueStandingsResponse(
+            league_id=league_id,
+            league_name=league_meta.get("name", f"League {league_id}"),
+            standings=standings
+        )
+
+    async def compare_squads_head_to_head(
+        self,
+        user_manager_id: int,
+        rival_manager_id: int,
+        gameweek: Optional[int] = None
+    ) -> HeadToHeadComparison:
+        if gameweek is None:
+            gameweek = await self.get_current_gameweek()
+
+        user_squad = await self.get_enriched_squad(user_manager_id, gameweek)
+        rival_squad = await self.get_enriched_squad(rival_manager_id, gameweek)
+
+        # Starters map: element_id -> EnrichedSquadPlayer
+        user_starters = {p.player.id: p for p in user_squad.starting_xi}
+        rival_starters = {p.player.id: p for p in rival_squad.starting_xi}
+
+        shared_ids = set(user_starters.keys()) & set(rival_starters.keys())
+        user_diff_ids = set(user_starters.keys()) - set(rival_starters.keys())
+        rival_diff_ids = set(rival_starters.keys()) - set(user_starters.keys())
+
+        shared_players = [user_starters[pid] for pid in shared_ids]
+        user_differentials = [user_starters[pid] for pid in user_diff_ids]
+        rival_differentials = [rival_starters[pid] for pid in rival_diff_ids]
+
+        # Captains
+        user_cap = next((p for p in user_squad.starting_xi if p.pick.is_captain), user_squad.starting_xi[0])
+        rival_cap = next((p for p in rival_squad.starting_xi if p.pick.is_captain), rival_squad.starting_xi[0])
+
+        user_cap_pts = user_cap.live_points * user_cap.pick.multiplier
+        rival_cap_pts = rival_cap.live_points * rival_cap.pick.multiplier
+        cap_delta = user_cap_pts - rival_cap_pts
+
+        user_total = user_squad.manager.overall_points or 0
+        rival_total = rival_squad.manager.overall_points or 0
+        overall_gap = user_total - rival_total
+        gw_gap = user_squad.gameweek_points - rival_squad.gameweek_points
+
+        # Summary verdict
+        if gw_gap > 0:
+            verdict = f"Leading by +{gw_gap} pts in GW{gameweek}. "
+        elif gw_gap < 0:
+            verdict = f"Trailing by {gw_gap} pts in GW{gameweek}. "
+        else:
+            verdict = f"Level on points in GW{gameweek}. "
+
+        if cap_delta != 0:
+            cap_sign = "+" if cap_delta > 0 else ""
+            verdict += f"Captaincy swing: {user_cap.player.web_name} ({user_cap_pts} pts) vs {rival_cap.player.web_name} ({rival_cap_pts} pts) yields {cap_sign}{cap_delta} pts delta."
+        else:
+            verdict += "Captaincy pick neutralized."
+
+        return HeadToHeadComparison(
+            user_manager_id=user_manager_id,
+            user_team_name=user_squad.manager.team_name,
+            user_player_name=user_squad.manager.player_name,
+            rival_manager_id=rival_manager_id,
+            rival_team_name=rival_squad.manager.team_name,
+            rival_player_name=rival_squad.manager.player_name,
+            gameweek=gameweek,
+            overall_points_gap=overall_gap,
+            gameweek_points_gap=gw_gap,
+            user_captain_name=user_cap.player.web_name,
+            user_captain_multiplier=user_cap.pick.multiplier,
+            user_captain_pts=user_cap_pts,
+            rival_captain_name=rival_cap.player.web_name,
+            rival_captain_multiplier=rival_cap.pick.multiplier,
+            rival_captain_pts=rival_cap_pts,
+            captain_points_delta=cap_delta,
+            user_differentials=user_differentials,
+            rival_differentials=rival_differentials,
+            shared_players=shared_players,
+            summary_verdict=verdict
+        )
 
 
 fpl_client = FPLClient()

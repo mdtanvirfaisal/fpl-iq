@@ -153,3 +153,50 @@ class WatchlistPlayerItem(BaseModel):
     player: PlayerSummary
     team: TeamSummary
     added_at: str
+
+
+class ClassicLeagueSummary(BaseModel):
+    id: int
+    name: str
+    entry_rank: Optional[int] = None
+    entry_last_rank: Optional[int] = None
+    league_type: str = "x"  # 's' broad/general, 'x' private mini-league
+
+
+class LeagueStandingEntry(BaseModel):
+    entry_id: int
+    entry_name: str
+    player_name: str
+    rank: int
+    last_rank: Optional[int] = None
+    event_total: int
+    total: int
+
+
+class LeagueStandingsResponse(BaseModel):
+    league_id: int
+    league_name: str
+    standings: List[LeagueStandingEntry]
+
+
+class HeadToHeadComparison(BaseModel):
+    user_manager_id: int
+    user_team_name: str
+    user_player_name: str
+    rival_manager_id: int
+    rival_team_name: str
+    rival_player_name: str
+    gameweek: int
+    overall_points_gap: int  # user - rival
+    gameweek_points_gap: int  # user - rival
+    user_captain_name: str
+    user_captain_multiplier: int
+    user_captain_pts: int
+    rival_captain_name: str
+    rival_captain_multiplier: int
+    rival_captain_pts: int
+    captain_points_delta: int  # (user_captain * mult) - (rival_captain * mult)
+    user_differentials: List[EnrichedSquadPlayer]
+    rival_differentials: List[EnrichedSquadPlayer]
+    shared_players: List[EnrichedSquadPlayer]
+    summary_verdict: str

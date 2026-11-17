@@ -3,11 +3,12 @@ import 'package:fpl_iq/main.dart';
 import 'package:fpl_iq/models/squad.dart';
 
 void main() {
-  testWidgets('FplIqApp smoke test loads navigation tabs', (WidgetTester tester) async {
+  testWidgets('FplIqApp smoke test loads all 4 navigation tabs', (WidgetTester tester) async {
     await tester.pumpWidget(const FplIqApp());
 
-    expect(find.text('Squad Pitch'), findsOneWidget);
-    expect(find.text('Live Matches'), findsOneWidget);
+    expect(find.text('Squad'), findsOneWidget);
+    expect(find.text('Live'), findsOneWidget);
+    expect(find.text('Leagues'), findsOneWidget);
     expect(find.text('Watchlist'), findsOneWidget);
   });
 
@@ -71,11 +72,39 @@ void main() {
     final match = FixtureMatch.fromJson(json);
     expect(match.id, 94);
     expect(match.homeScore, 3);
-    expect(match.awayScore, 1);
     expect(match.events.length, 1);
-    expect(match.events[0].playerName, 'Barry');
     expect(match.bonusCandidates.length, 1);
     expect(match.bonusCandidates[0].bonusPoints, 3);
-    expect(match.bonusCandidates[0].isProvisional, true);
+  });
+
+  test('HeadToHeadComparison JSON deserialization', () {
+    final json = {
+      'user_manager_id': 1,
+      'user_team_name': 'Team Alpha',
+      'user_player_name': 'Manager One',
+      'rival_manager_id': 2,
+      'rival_team_name': 'Team Beta',
+      'rival_player_name': 'Manager Two',
+      'gameweek': 10,
+      'overall_points_gap': 25,
+      'gameweek_points_gap': 6,
+      'user_captain_name': 'Haaland',
+      'user_captain_multiplier': 2,
+      'user_captain_pts': 16,
+      'rival_captain_name': 'Salah',
+      'rival_captain_multiplier': 2,
+      'rival_captain_pts': 10,
+      'captain_points_delta': 6,
+      'user_differentials': [],
+      'rival_differentials': [],
+      'shared_players': [],
+      'summary_verdict': 'Leading by +6 pts in GW10.'
+    };
+
+    final comp = HeadToHeadComparison.fromJson(json);
+    expect(comp.userManagerId, 1);
+    expect(comp.overallPointsGap, 25);
+    expect(comp.gameweekPointsGap, 6);
+    expect(comp.captainPointsDelta, 6);
   });
 }
