@@ -10,73 +10,105 @@ Based on [PRD.md](PRD.md) (Product Requirements Document v1.0).
 
 ```
 FPL IQ/
-├── PRD.md                    # Core Product Requirements Document
-├── backend/                  # Python FastAPI Analytical Backend
+├── PRD.md                         # Core Product Requirements Document
+├── backend/                       # Python FastAPI Analytical Backend
 │   ├── app/
-│   │   ├── api/v1/router.py  # REST endpoints (health, bootstrap, squad, rank impact)
-│   │   ├── core/config.py    # Configuration & cache TTL settings
-│   │   ├── engine/           # Signature Rank-Impact & swing calculation engine
-│   │   ├── models/fpl.py     # Pydantic v2 schemas for squad, manager, players
-│   │   ├── services/fpl/     # Resilient FPL API client with backoff & smart cache
-│   │   └── main.py           # FastAPI application entrypoint with CORS
-│   └── tests/test_fpl.py     # Unit & live FPL integration tests
+│   │   ├── api/v1/router.py       # REST endpoints (squad, live, rank, leagues, planner, FDR)
+│   │   ├── core/config.py         # App configuration & cache TTL settings
+│   │   ├── engine/
+│   │   │   ├── rank_impact.py     # Signature Rank-Impact & relative swing engine
+│   │   │   ├── bonus.py           # Official tie-breaking Provisional Bonus engine
+│   │   │   └── planner.py         # Transfer constraint validator & Chip Simulator
+│   │   ├── models/fpl.py          # Pydantic v2 schemas
+│   │   ├── services/fpl/
+│   │   │   ├── client.py          # Resilient FPL client with backoff & smart caching
+│   │   │   └── watchlist_store.py # Persistent watchlist JSON store
+│   │   └── main.py                # FastAPI entrypoint with CORS
+│   └── tests/test_fpl.py          # 16 Unit & live FPL integration tests
 │
-└── mobile/                   # Flutter Mobile App (iOS / Android)
+└── mobile/                        # Flutter Mobile App (iOS / Android)
     ├── lib/
-    │   ├── core/theme.dart   # Premier League signature dark theme
-    │   ├── models/squad.dart # Dart models matching backend schemas
-    │   ├── services/         # API client
+    │   ├── core/theme.dart        # Premier League signature dark theme
+    │   ├── models/squad.dart      # Dart models matching backend schemas
+    │   ├── services/api_service.dart # HTTP API client
     │   └── features/
-    │       ├── home/         # Dashboard & Rank Impact intelligence sheet
-    │       └── squad/        # Interactive football pitch visualizer & bench
-    └── test/widget_test.dart # Widget & model tests
+    │       ├── home/              # Main navigation shell & squad pitch view
+    │       ├── live/              # Live Match Centre with provisional bonus & timeline
+    │       ├── planner/           # Transfer Scenario Simulator & FDR Fixture Ticker
+    │       ├── leagues/           # Mini-League standings & Head-to-Head Rival Radar
+    │       └── watchlist/         # Player search & status tracking
+    └── test/widget_test.dart      # Widget & deserialization tests
 ```
 
 ---
 
-## Getting Started
+## Delivered MVP Capabilities
 
-### 1. Backend (FastAPI)
+1. **Phase 1: Foundation & FPL Data Ingestion Spike**
+   - Connected with official `fantasy.premierleague.com/api` endpoints (`bootstrap-static/`, `entry/{id}/`, `entry/{id}/event/{gw}/picks/`, `event/{gw}/live/`, `fixtures/`).
+   - Resilient caching, rate-limit backoff, and loop-safe connection pooling.
+   - Interactive Football Pitch layout with captain multipliers (`C`, `TC`, `V`), injury flags, and bench order.
+   - Core Rank Impact model:
+     $$\text{Relative Impact} \approx (\text{User Multiplier} - \text{Cohort EO}) \times \text{Player Points}$$
 
-1. Activate virtual environment:
-   ```powershell
-   .\backend\.venv\Scripts\Activate.ps1
-   ```
+2. **Phase 2: Live Match Centre & Provisional Bonus Points**
+   - Live fixture cards with real-time match statuses (`Live 64'`, `FT (Provisional Bonus)`, `Full Time`).
+   - Match event timeline (goals, assists, cards, saves, penalties).
+   - Official BPS bonus tie-breaking system strictly distinguishing **Provisional** estimates from **Official Finalized** bonus points.
+   - Persistent Watchlist store with instant player search across all 600+ Premier League players.
 
-2. Run tests:
-   ```powershell
-   .\backend\.venv\Scripts\pytest -c backend\pytest.ini backend\tests -v
-   ```
+3. **Phase 3: Mini-Leagues & Head-to-Head Rival Radar**
+   - Auto-detection of all classic mini-leagues for a manager.
+   - Live league standings table with rank badges and event scores.
+   - Head-to-Head Rival Comparison sheet:
+     - Live Gameweek points gap indicator
+     - **Captaincy Clash** (points delta between captains)
+     - **Differentials Radar** (User differentials vs Rival threat differentials vs Shared core)
 
-3. Start backend API server:
-   ```powershell
-   .\backend\.venv\Scripts\uvicorn app.main:app --reload --port 8000
-   ```
-   Interactive Swagger docs are accessible at: `http://localhost:8000/docs`.
-
-### 2. Mobile App (Flutter)
-
-1. Navigate to the mobile directory:
-   ```bash
-   cd mobile
-   ```
-
-2. Run analyzer and tests:
-   ```bash
-   flutter test
-   ```
-
-3. Launch on connected device, emulator, or Chrome:
-   ```bash
-   flutter run
-   ```
+4. **Phase 4: Transfer Planner, Chip Simulator & Fixture Ticker (FDR)**
+   - **Transfer Scenario Simulator**:
+     - Budget deficit checks (`final_bank >= 0`)
+     - Premier League club limit constraint (max 3 players per club)
+     - Penalty hit calculation (-4 pts per transfer beyond free transfers)
+   - **Chip Simulator**:
+     - **Wildcard**: Waives transfer hit costs completely
+     - **Free Hit**: Simulates single-gameweek squad transformation
+     - **Triple Captain**: Multiplies captain return by x3
+     - **Bench Boost**: Adds bench player points to active total
+   - **Fixture Difficulty Ticker (FDR)**:
+     - 5-gameweek forward ticker for all 20 Premier League clubs
+     - Color-coded difficulty badges (Green = Easy, Slate = Medium, Red/Orange = Hard) with Home/Away indicators (`(H)` / `(A)`).
 
 ---
 
-## Phase 1 Capabilities Implemented
+## Verification & Testing
 
-- **FPL Live Data Ingestion**: Direct connection with `fantasy.premierleague.com/api` endpoints (`bootstrap-static/`, `entry/{id}/`, `entry/{id}/event/{gw}/picks/`, `event/{gw}/live/`, `fixtures/`).
-- **Resilient Caching & Backoff**: Exponential retry backoff, endpoint TTL caching, and rate-limiting protection.
-- **Squad & Pitch Visualizer**: Responsive football pitch representation of starting XI with captaincy multipliers (`C`, `TC`, `V`) and designated bench order.
-- **Rank Impact Intelligence**: Evaluates relative points swing against rank cohorts (Top 10k, Top 100k) and direct rivals using:
-  $$\text{Relative Impact} \approx (\text{User Multiplier} - \text{Cohort EO}) \times \text{Player Points}$$
+### Backend Tests
+```powershell
+.\backend\.venv\Scripts\pytest -c backend\pytest.ini backend\tests -v
+```
+**16/16 tests passing** (unit logic + live integration with Premier League endpoints).
+
+### Mobile Tests & Analysis
+```powershell
+cd mobile
+flutter analyze
+flutter test
+```
+**0 analysis issues**, **5/5 widget & model tests passing**.
+
+---
+
+## How to Run
+
+1. **Start the Backend Server:**
+   ```powershell
+   .\backend\.venv\Scripts\uvicorn app.main:app --reload --port 8000
+   ```
+   Interactive API docs are available at: `http://localhost:8000/docs`.
+
+2. **Run the Flutter Mobile App:**
+   ```powershell
+   cd mobile
+   flutter run
+   ```
