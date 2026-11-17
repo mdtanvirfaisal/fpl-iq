@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import '../models/squad.dart';
 
 class ApiService {
-  // Allow overriding baseUrl (e.g. 10.0.2.2 for Android emulator, localhost for desktop/web)
-  static String baseUrl = 'http://127.0.0.1:8000/api/v1';
+  // Production 24/7 Cloud backend URL on Render (can also be overridden in in-app settings)
+  static String baseUrl = 'https://fpl-iq-1.onrender.com/api/v1';
 
   static Future<SquadResponse> getManagerSquad(int managerId, {int? gameweek}) async {
     final gwParam = gameweek != null ? '?gameweek=$gameweek' : '';
