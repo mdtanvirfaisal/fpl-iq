@@ -231,7 +231,10 @@ async def test_head_to_head_rival_comparison():
 
 
 from app.engine.planner import simulate_transfer_plan
-from app.models.fpl import TeamSummary, PlayerSummary, EnrichedSquadPlayer, SquadPick
+from app.models.fpl import (
+    TeamSummary, PlayerSummary, EnrichedSquadPlayer, SquadPick,
+    ManagerProfile, SquadResponse, ClubFixtureTickerItem, ClubFixtureTicker
+)
 
 
 def test_transfer_planner_budget_deficit():
@@ -408,3 +411,68 @@ async def test_notifications_workflow():
         update_resp = await ac.post("/api/v1/notifications/settings", json=cur_settings)
         assert update_resp.status_code == 200
         assert update_resp.json()["quiet_hours_enabled"] is True
+
+
+from app.engine.advisor import generate_advisor_analysis
+from app.models.fpl import AdvisorQueryRequest
+
+
+def test_advisor_engine_captaincy():
+    # Setup dummy squad
+    dummy_team = TeamSummary(id=1, name="Arsenal", short_name="ARS", strength=4)
+    p_high_form = PlayerSummary(
+        id=1, web_name="Saka", first_name="B", second_name="S",
+        team_id=1, element_type=3, position_name="MID", now_cost=10.0, cost_raw=100,
+        status="a", total_points=80, selected_by_percent=25.0, form=8.5, event_points=10
+    )
+    p_low_form = PlayerSummary(
+        id=2, web_name="Rice", first_name="D", second_name="R",
+        team_id=1, element_type=3, position_name="MID", now_cost=6.5, cost_raw=65,
+        status="a", total_points=40, selected_by_percent=10.0, form=3.0, event_points=2
+    )
+
+    squad_players = [
+        EnrichedSquadPlayer(
+            player=p_high_form, team=dummy_team,
+            pick=SquadPick(element_id=1, position=1, multiplier=1, is_captain=False, is_vice_captain=False),
+            live_points=10, is_starter=True
+        ),
+        EnrichedSquadPlayer(
+            player=p_low_form, team=dummy_team,
+            pick=SquadPick(element_id=2, position=2, multiplier=1, is_captain=False, is_vice_captain=False),
+            live_points=2, is_starter=True
+        )
+    ]
+    mgr_profile = ManagerProfile(id=1, player_name="Test", team_name="FC Test")
+    squad_resp = SquadResponse(
+        manager=mgr_profile, gameweek=10, starting_xi=squad_players, bench=[],
+        gameweek_points=12, is_live=False, data_freshness_ts=""
+    )
+
+    ticker = [
+        ClubFixtureTicker(
+            team_id=1, team_name="Arsenal", team_short_name="ARS",
+            fixtures=[ClubFixtureTickerItem(gameweek=11, opponent_id=2, opponent_short_name="WOL", is_home=True, difficulty=2)]
+        )
+    ]
+
+    analysis = generate_advisor_analysis(
+        squad=squad_resp, ticker=ticker, injuries=[], candidate_targets=[]
+    )
+
+    assert analysis.primary_captain_recommendation == "Saka"
+    assert analysis.squad_health_score > 0
+    assert len(analysis.recommendations) > 0
+
+
+@pytest.mark.asyncio
+async def test_advisor_analyze_endpoint():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        req = {"manager_id": 1, "focus_area": "general"}
+        resp = await ac.post("/api/v1/advisor/analyze", json=req)
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["manager_id"] == 1
+        assert "primary_captain_recommendation" in data
+        assert "squad_health_score" in data
+        assert len(data["recommendations"]) > 0

@@ -8,9 +8,9 @@ void main() {
 
     expect(find.text('Squad'), findsOneWidget);
     expect(find.text('Live'), findsOneWidget);
+    expect(find.text('Advisor'), findsOneWidget);
     expect(find.text('Planner'), findsOneWidget);
     expect(find.text('Leagues'), findsOneWidget);
-    expect(find.text('Watchlist'), findsOneWidget);
   });
 
   test('RankImpactResult JSON deserialization', () {
@@ -185,5 +185,33 @@ void main() {
     expect(trends.mostTransferredIn.length, 1);
     expect(trends.mostTransferredIn[0].playerName, 'N.Jackson');
     expect(trends.mostTransferredIn[0].netTransfersEvent, 330000);
+  });
+
+  test('AdvisorResponse deserialization', () {
+    final advJson = {
+      'manager_id': 1,
+      'team_name': 'My FC',
+      'squad_health_score': 85,
+      'primary_captain_recommendation': 'Haaland',
+      'vice_captain_recommendation': 'Palmer',
+      'recommendations': [
+        {
+          'title': 'Armband on Haaland',
+          'category': 'captaincy',
+          'confidence': 'High',
+          'rationale': 'High form against weak defence',
+          'player_names': ['Haaland'],
+          'trade_offs': 'Vice on Palmer'
+        }
+      ],
+      'grounded_facts_used': ['Haaland form 8.5'],
+      'disclaimer': 'Test disclaimer'
+    };
+    final adv = AdvisorResponse.fromJson(advJson);
+    expect(adv.managerId, 1);
+    expect(adv.primaryCaptainRecommendation, 'Haaland');
+    expect(adv.squadHealthScore, 85);
+    expect(adv.recommendations.length, 1);
+    expect(adv.recommendations[0].category, 'captaincy');
   });
 }

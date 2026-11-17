@@ -269,3 +269,30 @@ class NotificationSettings(BaseModel):
     quiet_hours_enabled: bool = False
     quiet_hours_start: str = "23:00"
     quiet_hours_end: str = "07:00"
+
+
+class AdvisorQueryRequest(BaseModel):
+    manager_id: int
+    gameweek: Optional[int] = None
+    query: Optional[str] = None
+    focus_area: str = "general"  # general, captaincy, transfers, audit
+
+
+class AdvisorRecommendationItem(BaseModel):
+    title: str
+    category: str  # captaincy, transfer, lineup, risk
+    confidence: str  # High, Moderate, Exploratory
+    rationale: str
+    player_names: List[str] = []
+    trade_offs: str
+
+
+class AdvisorResponse(BaseModel):
+    manager_id: int
+    team_name: str
+    squad_health_score: int  # 0 to 100
+    primary_captain_recommendation: str
+    vice_captain_recommendation: str
+    recommendations: List[AdvisorRecommendationItem]
+    grounded_facts_used: List[str]
+    disclaimer: str = "Advisory analysis grounded strictly in official FPL statistics; not guaranteed outcomes."

@@ -8,11 +8,13 @@ from app.models.fpl import (
     LiveMatchCenterResponse, PlayerSummary, WatchlistPlayerItem, TeamSummary,
     ClassicLeagueSummary, LeagueStandingsResponse, HeadToHeadComparison,
     ClubFixtureTicker, InjuryNewsItem, MarketTrendsResponse,
-    NotificationItem, NotificationSettings
+    NotificationItem, NotificationSettings,
+    AdvisorQueryRequest, AdvisorResponse
 )
 from app.engine.planner import (
     TransferSimulationRequest, TransferSimulationResult, simulate_transfer_plan
 )
+from app.engine.advisor import generate_advisor_analysis
 from app.engine.rank_impact import calculate_rank_impact
 from app.core.config import settings
 import time
@@ -357,3 +359,52 @@ async def get_notification_settings():
 @api_router.post("/notifications/settings", response_model=NotificationSettings)
 async def update_notification_settings(settings: NotificationSettings):
     return notification_store.update_settings(settings)
+
+
+@api_router.post("/advisor/analyze", response_model=AdvisorResponse)
+async def analyze_squad_with_advisor(request: AdvisorQueryRequest):
+    """
+    AI FPL Advisor (Section 7.10 of PRD):
+    Evaluates captaincy, transfer moves, fixture traps, and injury risks grounded strictly in real FPL statistics.
+    """
+    try:
+        squad = await fpl_client.get_enriched_squad(request.manager_id, request.gameweek)
+        ticker = await fpl_client.get_fixture_ticker(count=3)
+        injuries = await fpl_client.get_injury_news()
+
+        bootstrap = await fpl_client.get_bootstrap_static()
+        from app.services.fpl.client import POSITION_MAP
+
+        candidate_targets = [
+            PlayerSummary(
+                id=p["id"],
+                web_name=p["web_name"],
+                first_name=p["first_name"],
+                second_name=p["second_name"],
+                team_id=p["team"],
+                element_type=p["element_type"],
+                position_name=POSITION_MAP.get(p["element_type"], "UNK"),
+                now_cost=p["now_cost"] / 10.0,
+                cost_raw=p["now_cost"],
+                status=p.get("status", "a"),
+                chance_of_playing_next_round=p.get("chance_of_playing_next_round"),
+                news=p.get("news") or None,
+                news_added=p.get("news_added") or None,
+                total_points=p.get("total_points", 0),
+                selected_by_percent=float(p.get("selected_by_percent", 0.0)),
+                form=float(p.get("form", 0.0)),
+                event_points=p.get("event_points", 0)
+            )
+            for p in bootstrap.get("elements", [])
+        ]
+
+        return generate_advisor_analysis(
+            squad=squad,
+            ticker=ticker,
+            injuries=injuries,
+            candidate_targets=candidate_targets,
+            query=request.query,
+            focus_area=request.focus_area
+        )
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"AI Advisor analysis failed: {str(e)}")
