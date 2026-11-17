@@ -5,8 +5,10 @@ import httpx
 from app.core.config import settings
 from app.models.fpl import (
     PlayerSummary, TeamSummary, GameweekEvent, ManagerProfile,
-    SquadPick, EnrichedSquadPlayer, SquadResponse
+    SquadPick, EnrichedSquadPlayer, SquadResponse,
+    MatchEvent, BonusSummary, FixtureMatch, LiveMatchCenterResponse
 )
+from app.engine.bonus import calculate_provisional_bonus
 
 POSITION_MAP = {
     1: "GKP",
@@ -46,9 +48,12 @@ class FPLClient:
         }
         self._cache: Dict[str, CacheEntry] = {}
         self._client: Optional[httpx.AsyncClient] = None
+        self._loop: Optional[asyncio.AbstractEventLoop] = None
 
     async def get_client(self) -> httpx.AsyncClient:
-        if self._client is None or self._client.is_closed:
+        current_loop = asyncio.get_running_loop()
+        if self._client is None or self._client.is_closed or self._loop != current_loop:
+            self._loop = current_loop
             self._client = httpx.AsyncClient(
                 base_url=self.base_url,
                 headers=self.headers,
@@ -263,6 +268,174 @@ class FPLClient:
             is_live=is_live,
             data_freshness_ts=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         )
+
+    async def get_live_match_center(self, gameweek: Optional[int] = None) -> LiveMatchCenterResponse:
+        """
+        Parses live fixtures, match events (goals, assists, cards),
+        and calculates provisional vs confirmed bonus points for all matches in the GW.
+        """
+        if gameweek is None:
+            gameweek = await self.get_current_gameweek()
+
+        bootstrap = await self.get_bootstrap_static()
+        raw_fixtures = await self.get_fixtures(gameweek)
+
+        teams_map = {
+            t["id"]: TeamSummary(
+                id=t["id"],
+                name=t["name"],
+                short_name=t["short_name"],
+                strength=t.get("strength") or 3,
+                strength_overall_home=t.get("strength_overall_home"),
+                strength_overall_away=t.get("strength_overall_away"),
+            )
+            for t in bootstrap.get("teams", [])
+        }
+
+        players_map = {
+            p["id"]: p["web_name"]
+            for p in bootstrap.get("elements", [])
+        }
+
+        fixture_matches: List[FixtureMatch] = []
+
+        for f in raw_fixtures:
+            home_t = teams_map.get(f["team_h"], TeamSummary(id=f["team_h"], name="Home", short_name="HOM", strength=3))
+            away_t = teams_map.get(f["team_a"], TeamSummary(id=f["team_a"], name="Away", short_name="AWY", strength=3))
+
+            started = f.get("started", False)
+            finished = f.get("finished", False)
+            fin_prov = f.get("finished_provisional", False)
+            minutes = f.get("minutes", 0)
+
+            if not started:
+                status_display = "Upcoming"
+            elif fin_prov and not finished:
+                status_display = "FT (Provisional Bonus)"
+            elif finished:
+                status_display = "Full Time"
+            else:
+                status_display = f"Live {minutes}'"
+
+            stats = f.get("stats", [])
+            stats_dict = {s["identifier"]: s for s in stats}
+
+            events: List[MatchEvent] = []
+            event_type_labels = {
+                "goals_scored": "goal",
+                "assists": "assist",
+                "own_goals": "own_goal",
+                "yellow_cards": "yellow_card",
+                "red_cards": "red_card",
+                "penalties_saved": "penalty_saved",
+                "penalties_missed": "penalty_missed",
+            }
+
+            for stat_key, label in event_type_labels.items():
+                stat_obj = stats_dict.get(stat_key)
+                if not stat_obj:
+                    continue
+                # Home team events
+                for item in stat_obj.get("h", []):
+                    elem_id = item["element"]
+                    events.append(MatchEvent(
+                        event_type=label,
+                        element_id=elem_id,
+                        player_name=players_map.get(elem_id, f"Player {elem_id}"),
+                        team_short_name=home_t.short_name,
+                        is_home=True,
+                        count=item["value"]
+                    ))
+                # Away team events
+                for item in stat_obj.get("a", []):
+                    elem_id = item["element"]
+                    events.append(MatchEvent(
+                        event_type=label,
+                        element_id=elem_id,
+                        player_name=players_map.get(elem_id, f"Player {elem_id}"),
+                        team_short_name=away_t.short_name,
+                        is_home=False,
+                        count=item["value"]
+                    ))
+
+            # Bonus calculation (Provisional vs Confirmed)
+            bps_stat = stats_dict.get("bps", {})
+            official_bonus_stat = stats_dict.get("bonus", {})
+
+            bonus_candidates_raw = calculate_provisional_bonus(
+                home_bps=bps_stat.get("h", []),
+                away_bps=bps_stat.get("a", []),
+                is_match_final=finished,
+                official_bonus=official_bonus_stat if finished and official_bonus_stat.get("h") else None
+            )
+
+            bonus_summaries = [
+                BonusSummary(
+                    element_id=c.element_id,
+                    player_name=players_map.get(c.element_id, f"Player {c.element_id}"),
+                    bps=c.bps,
+                    bonus_points=c.bonus_points,
+                    is_provisional=c.is_provisional,
+                    is_home=c.is_home
+                )
+                for c in bonus_candidates_raw
+            ]
+
+            fixture_matches.append(FixtureMatch(
+                id=f["id"],
+                gameweek=gameweek,
+                kickoff_time=f.get("kickoff_time", ""),
+                started=started,
+                finished=finished,
+                finished_provisional=fin_prov,
+                minutes=minutes,
+                home_team=home_t,
+                away_team=away_t,
+                home_score=f.get("team_h_score"),
+                away_score=f.get("team_a_score"),
+                events=events,
+                bonus_candidates=bonus_summaries,
+                status_display=status_display
+            ))
+
+        return LiveMatchCenterResponse(
+            gameweek=gameweek,
+            matches=fixture_matches,
+            data_freshness_ts=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        )
+
+    async def search_players(self, query: str, limit: int = 25) -> List[PlayerSummary]:
+        bootstrap = await self.get_bootstrap_static()
+        q = query.lower().strip()
+        results = []
+
+        for p in bootstrap.get("elements", []):
+            name = p["web_name"].lower()
+            full_name = f"{p['first_name']} {p['second_name']}".lower()
+            if q in name or q in full_name:
+                results.append(PlayerSummary(
+                    id=p["id"],
+                    web_name=p["web_name"],
+                    first_name=p["first_name"],
+                    second_name=p["second_name"],
+                    team_id=p["team"],
+                    element_type=p["element_type"],
+                    position_name=POSITION_MAP.get(p["element_type"], "UNK"),
+                    now_cost=p["now_cost"] / 10.0,
+                    cost_raw=p["now_cost"],
+                    status=p.get("status", "a"),
+                    chance_of_playing_next_round=p.get("chance_of_playing_next_round"),
+                    news=p.get("news") or None,
+                    news_added=p.get("news_added") or None,
+                    total_points=p.get("total_points", 0),
+                    selected_by_percent=float(p.get("selected_by_percent", 0.0)),
+                    form=float(p.get("form", 0.0)),
+                    event_points=p.get("event_points", 0)
+                ))
+                if len(results) >= limit:
+                    break
+
+        return results
 
 
 fpl_client = FPLClient()

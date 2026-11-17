@@ -116,3 +116,82 @@ async def test_live_fpl_integration_manager_and_squad():
         assert len(squad_data["starting_xi"]) == 11
         assert len(squad_data["bench"]) == 4
         assert squad_data["gameweek"] >= 1
+
+
+from app.engine.bonus import calculate_provisional_bonus
+
+
+def test_provisional_bonus_standard():
+    home_bps = [{'element': 1, 'value': 45}, {'element': 2, 'value': 28}]
+    away_bps = [{'element': 3, 'value': 35}, {'element': 4, 'value': 12}]
+
+    candidates = calculate_provisional_bonus(home_bps, away_bps, is_match_final=False)
+    # Ranks:
+    # 1: elem 1 (45 BPS) -> 3 pts
+    # 2: elem 3 (35 BPS) -> 2 pts
+    # 3: elem 2 (28 BPS) -> 1 pt
+    assert len(candidates) == 3
+    assert candidates[0].element_id == 1
+    assert candidates[0].bonus_points == 3
+    assert candidates[0].is_provisional is True
+
+    assert candidates[1].element_id == 3
+    assert candidates[1].bonus_points == 2
+
+    assert candidates[2].element_id == 2
+    assert candidates[2].bonus_points == 1
+
+
+def test_provisional_bonus_tied_for_first():
+    # Two players tied with 40 BPS
+    home_bps = [{'element': 10, 'value': 40}]
+    away_bps = [{'element': 20, 'value': 40}, {'element': 30, 'value': 30}]
+
+    candidates = calculate_provisional_bonus(home_bps, away_bps, is_match_final=False)
+    # Both 10 & 20 should receive 3 bonus pts. Next player receives 1 bonus pt.
+    assert len(candidates) == 3
+    assert candidates[0].bonus_points == 3
+    assert candidates[1].bonus_points == 3
+    assert candidates[2].element_id == 30
+    assert candidates[2].bonus_points == 1
+
+
+@pytest.mark.asyncio
+async def test_live_matches_endpoint():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        resp = await ac.get("/api/v1/live/matches?gameweek=10")
+        assert resp.status_code == 200, f"Error: {resp.status_code} - {resp.text}"
+        data = resp.json()
+        assert data["gameweek"] == 10
+        assert len(data["matches"]) > 0
+        match = data["matches"][0]
+        assert "home_team" in match
+        assert "away_team" in match
+        assert "bonus_candidates" in match
+
+
+@pytest.mark.asyncio
+async def test_watchlist_workflow():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        # Search for Haaland
+        search_resp = await ac.get("/api/v1/players/search?q=Haaland")
+        assert search_resp.status_code == 200
+        players = search_resp.json()
+        assert len(players) > 0
+        haaland = players[0]
+        assert "Haaland" in haaland["web_name"]
+
+        # Add to watchlist
+        add_resp = await ac.post(f"/api/v1/watchlist/{haaland['id']}")
+        assert add_resp.status_code == 200
+
+        # Retrieve watchlist
+        list_resp = await ac.get("/api/v1/watchlist")
+        assert list_resp.status_code == 200
+        tracked = list_resp.json()
+        assert any(item["player"]["id"] == haaland["id"] for item in tracked)
+
+        # Remove from watchlist
+        del_resp = await ac.delete(f"/api/v1/watchlist/{haaland['id']}")
+        assert del_resp.status_code == 200
+        assert del_resp.json()["status"] == "removed"

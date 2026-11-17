@@ -106,3 +106,50 @@ class RankImpactResult(BaseModel):
     summary_text: str
     provisional: bool = False
     confidence_level: str = "Estimated"
+
+
+class MatchEvent(BaseModel):
+    event_type: str  # goal, assist, own_goal, yellow_card, red_card, penalty_saved, penalty_missed
+    element_id: int
+    player_name: str
+    team_short_name: str
+    is_home: bool
+    count: int = 1
+
+
+class BonusSummary(BaseModel):
+    element_id: int
+    player_name: str
+    bps: int
+    bonus_points: int
+    is_provisional: bool
+    is_home: bool
+
+
+class FixtureMatch(BaseModel):
+    id: int
+    gameweek: int
+    kickoff_time: str
+    started: bool
+    finished: bool
+    finished_provisional: bool
+    minutes: int
+    home_team: TeamSummary
+    away_team: TeamSummary
+    home_score: Optional[int] = None
+    away_score: Optional[int] = None
+    events: List[MatchEvent] = []
+    bonus_candidates: List[BonusSummary] = []
+    status_display: str
+
+
+class LiveMatchCenterResponse(BaseModel):
+    gameweek: int
+    matches: List[FixtureMatch]
+    data_freshness_ts: str
+
+
+class WatchlistPlayerItem(BaseModel):
+    player: PlayerSummary
+    team: TeamSummary
+    added_at: str
